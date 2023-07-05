@@ -1,14 +1,14 @@
 using UnityEngine;
 
 public class CursorManager : MonoBehaviour {
+    public enum CursorType {
+        Follow
+    }
+
     #region Methods
     // Start is called before the first frame update
     private void Start() {
         Cursor.visible = true;
-
-        Cursor.SetCursor(cursorTexture,
-            new Vector2(cursorTexture.width, cursorTexture.height) * 0.5f,
-            CursorMode.Auto);
     }
 
     // Update is called once per frame
@@ -19,6 +19,9 @@ public class CursorManager : MonoBehaviour {
 
     #region Member variables
     [SerializeField]
-    private Texture2D cursorTexture = null;
+    private CursorSO[] cursors;
+
+    private int currentFrameIndex = 0;
+    private float timer = 0f;
     #endregion
 }

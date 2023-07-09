@@ -1,10 +1,33 @@
+//#define DEBUG_MODE
+
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
     #region Methods
     // Update is called once per frame
     private void Update() {
-        FollowCursor();
+        MoveWhenPathClear();
+    }
+
+    private void MoveWhenPathClear() {
+        Vector3 movementDirection = GetMovementDirection();
+
+#if DEBUG_MODE
+        Debug.DrawRay(transform.position,
+            movementDirection * collisionMinDistance,
+            Color.yellow);
+#endif
+
+        if (!Physics2D.Raycast(transform.position,
+            movementDirection,
+            collisionMinDistance,
+            collisionMask)) {
+            FollowCursor();
+        }
+    }
+
+    private Vector3 GetMovementDirection() {
+        return (GetMouseWorldPosition() - transform.position).normalized;
     }
 
     private void FollowCursor() {
@@ -24,6 +47,14 @@ public class PlayerMovement : MonoBehaviour {
 
     #region Member variables
     [SerializeField]
-    private float speed = 5f;
+    private float speed = 1f;
+
+    [Header("Collision Detection")]
+
+    [SerializeField]
+    private float collisionMinDistance = 1f;
+
+    [SerializeField]
+    private LayerMask collisionMask;
     #endregion
 }

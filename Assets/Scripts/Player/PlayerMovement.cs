@@ -5,6 +5,8 @@ using UnityEngine.Events;
 
 [System.Serializable]
 public class BoolIntEvent : UnityEvent<bool, int> { }
+[System.Serializable]
+public class BoolEvent : UnityEvent<bool> { }
 
 public class PlayerMovement : MonoBehaviour {
     #region Methods
@@ -25,7 +27,38 @@ public class PlayerMovement : MonoBehaviour {
 
         if (!IsThereAnImpendingCollision(movementDirection)) {
             FollowCursor();
+
+            // Start running animation event
+            int animMoveDir = GetAnimationMoveDirection(movementDirection);
+            onPlayerMove?.Invoke(true, animMoveDir);
+        } else {
+            // Stop running animation when colliding and can't move
+            onPlayerMove?.Invoke(false, -1);
         }
+
+        if (HasPlayerReachedDestination()) {
+            // Stop the running animation event
+            onPlayerMove?.Invoke(false, -1);
+        }
+    }
+
+    private void UpdateLatestWorldMousePosition() {
+        // When the mouse stops moving we stop updating its position
+        if (!IsMouseMoving()) {
+            return;
+        }
+
+        mouseFinalPositionWhenLastMoved = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mouseFinalPositionWhenLastMoved.z = 0f;
+    }
+
+    private bool IsMouseMoving() {
+        bool mouseMoving = Input.mousePosition != previousMousePosition;
+
+        // Keep previous mouse position up to date
+        previousMousePosition = Input.mousePosition;
+
+        return mouseMoving;
     }
 
     private Vector3 GetMovementDirection() {
@@ -46,22 +79,66 @@ public class PlayerMovement : MonoBehaviour {
             speed * Time.deltaTime);
     }
 
-    private void UpdateLatestWorldMousePosition() {
-        // When the mouse stops moving we stop updating its position
-        if (!IsMouseMoving())
-            return;
+    private int GetAnimationMoveDirection(Vector3 moveDir) {
+        float threshold = 0.01f;
 
-        mouseFinalPositionWhenLastMoved = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mouseFinalPositionWhenLastMoved.z = 0f;
+        if (IsPlayerWalkingUp(threshold, moveDir)) {
+            // Going upwards
+            return 0;
+        }
+        
+        if (IsPlayerWalkingDown(threshold, moveDir)) {
+            // Going downwards
+            return 2;
+        } 
+        
+        if (IsPlayerWalkingRight(threshold, moveDir) || IsPlayerWalkingLeft(threshold, moveDir)) {
+            // Going sideways
+            return 1;
+        }
+
+        // Shouldn't get here
+        return -1;
     }
 
-    private bool IsMouseMoving() {
-        bool mouseMoving = Input.mousePosition != previousMousePosition;
+    private bool IsPlayerWalkingUp(float moveThreshold, Vector3 direction) {
+        return direction.y > moveThreshold && IsLeftGreaterThanRight(direction.y, direction.x);
+    }
 
-        // Keep previous mouse position up to date
-        previousMousePosition = Input.mousePosition;
+    private bool IsPlayerWalkingDown(float moveThreshold, Vector3 direction) {
+        return direction.y < -moveThreshold && IsLeftGreaterThanRight(direction.y, direction.x);
+    }
 
-        return mouseMoving;
+    private bool IsPlayerWalkingRight(float moveThreshold, Vector3 direction) {
+        bool walkingRight = direction.x > moveThreshold &&
+            IsLeftGreaterThanRight(direction.x, direction.y);
+
+        if (walkingRight) {
+            onPlayerWalkSideways?.Invoke(false);
+        }
+
+        return walkingRight;
+    }
+
+    private bool IsPlayerWalkingLeft(float moveThreshold, Vector3 direction) {
+        bool walkingLeft = direction.x < -moveThreshold &&
+            IsLeftGreaterThanRight(direction.x, direction.y);
+
+        if (walkingLeft) {
+            onPlayerWalkSideways?.Invoke(true);
+        }
+
+        return walkingLeft;
+    }
+
+    private bool IsLeftGreaterThanRight(float left, float right) {
+        // This is used to check whether 'left' movement is more prominent than 'right' movement
+        // We can pick the animation for the movement that is more impactful
+        return Mathf.Abs(left) > Mathf.Abs(right);
+    }
+
+    private bool HasPlayerReachedDestination() {
+        return transform.position == mouseFinalPositionWhenLastMoved;
     }
     #endregion
 
@@ -78,6 +155,7 @@ public class PlayerMovement : MonoBehaviour {
     private LayerMask collisionMask;
 
     public BoolIntEvent onPlayerMove;
+    public BoolEvent onPlayerWalkSideways;
 
     private Vector3 previousMousePosition;
     private Vector3 mouseFinalPositionWhenLastMoved;

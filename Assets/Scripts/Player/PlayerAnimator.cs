@@ -6,6 +6,11 @@ public class PlayerAnimator : MonoBehaviour {
     // Start is called before the first frame update
     private void Start() {
         Assert.IsNotNull(animator, "No animator was assigned to PlayerAnimator");
+        Assert.IsNotNull(spriteRenderer, "SpriteRenderer was not assigned to PlayerMovement");
+    }
+
+    public void FlipSpriteHorizontal(bool isFlipped) {
+        spriteRenderer.flipX = isFlipped;
     }
 
     public void SetWalkingAnimation(bool isSet, int direction) {
@@ -24,6 +29,8 @@ public class PlayerAnimator : MonoBehaviour {
     #endregion
 
     #region Member variables
+    [SerializeField]
+    private SpriteRenderer spriteRenderer;
     [SerializeField]
     private Animator animator;
 

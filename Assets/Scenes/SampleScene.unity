@@ -3832,6 +3832,7 @@ GameObject:
   - component: {fileID: 1409785495}
   - component: {fileID: 1409785496}
   - component: {fileID: 1409785498}
+  - component: {fileID: 1409785499}
   m_Layer: 0
   m_Name: Dante
   m_TagString: Player
@@ -3920,6 +3921,23 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 192
+--- !u!114 &1409785499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409785492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bae79adddf2e8c45af0508a9b0f5906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1815102573}
+  walkBooleanName: isWalking
+  attackBooleanName: isAttacking
+  moveDirectionIntName: moveDirection
+  hitTriggerName: hit
 --- !u!1 &1579985477
 GameObject:
   m_ObjectHideFlags: 0

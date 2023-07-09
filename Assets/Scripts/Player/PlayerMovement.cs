@@ -31,10 +31,17 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void FollowCursor() {
-        transform.position =
+        Vector3 newPosition =
             Vector3.Lerp(transform.position,
             GetMouseWorldPosition(),
             speed * Time.deltaTime);
+
+        // Clamp the movement vector to keep its magnitude (speed) between current speed and max speed
+        newPosition =
+            transform.position +
+            Vector3.ClampMagnitude(newPosition - transform.position, maxSpeed * Time.deltaTime);
+
+        transform.position = newPosition;
     }
 
     private Vector3 GetMouseWorldPosition() {
@@ -47,7 +54,10 @@ public class PlayerMovement : MonoBehaviour {
 
     #region Member variables
     [SerializeField]
-    private float speed = 1f;
+    private float speed = 0.5f;
+
+    [SerializeField]
+    private float maxSpeed = 5f;
 
     [Header("Collision Detection")]
 

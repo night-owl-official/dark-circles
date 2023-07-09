@@ -1,6 +1,10 @@
 //#define DEBUG_MODE
 
 using UnityEngine;
+using UnityEngine.Events;
+
+[System.Serializable]
+public class BoolIntEvent : UnityEvent<bool, int> { }
 
 public class PlayerMovement : MonoBehaviour {
     #region Methods
@@ -10,6 +14,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void MoveWhenPathClear() {
+        UpdateLatestWorldMousePosition();
         Vector3 movementDirection = GetMovementDirection();
 
 #if DEBUG_MODE
@@ -18,46 +23,51 @@ public class PlayerMovement : MonoBehaviour {
             Color.yellow);
 #endif
 
-        if (!Physics2D.Raycast(transform.position,
-            movementDirection,
-            collisionMinDistance,
-            collisionMask)) {
+        if (!IsThereAnImpendingCollision(movementDirection)) {
             FollowCursor();
         }
     }
 
     private Vector3 GetMovementDirection() {
-        return (GetMouseWorldPosition() - transform.position).normalized;
+        return (mouseFinalPositionWhenLastMoved - transform.position).normalized;
+    }
+
+    private bool IsThereAnImpendingCollision(Vector3 moveDir) {
+        return Physics2D.Raycast(transform.position,
+            moveDir,
+            collisionMinDistance,
+            collisionMask).collider != null;
     }
 
     private void FollowCursor() {
-        Vector3 newPosition =
-            Vector3.Lerp(transform.position,
-            GetMouseWorldPosition(),
+        transform.position =
+            Vector3.MoveTowards(transform.position,
+            mouseFinalPositionWhenLastMoved,
             speed * Time.deltaTime);
-
-        // Clamp the movement vector to keep its magnitude (speed) between current speed and max speed
-        newPosition =
-            transform.position +
-            Vector3.ClampMagnitude(newPosition - transform.position, maxSpeed * Time.deltaTime);
-
-        transform.position = newPosition;
     }
 
-    private Vector3 GetMouseWorldPosition() {
-        Vector3 worldMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        worldMousePos.z = 0f;
+    private void UpdateLatestWorldMousePosition() {
+        // When the mouse stops moving we stop updating its position
+        if (!IsMouseMoving())
+            return;
 
-        return worldMousePos;
+        mouseFinalPositionWhenLastMoved = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mouseFinalPositionWhenLastMoved.z = 0f;
+    }
+
+    private bool IsMouseMoving() {
+        bool mouseMoving = Input.mousePosition != previousMousePosition;
+
+        // Keep previous mouse position up to date
+        previousMousePosition = Input.mousePosition;
+
+        return mouseMoving;
     }
     #endregion
 
     #region Member variables
     [SerializeField]
     private float speed = 0.5f;
-
-    [SerializeField]
-    private float maxSpeed = 5f;
 
     [Header("Collision Detection")]
 
@@ -66,5 +76,10 @@ public class PlayerMovement : MonoBehaviour {
 
     [SerializeField]
     private LayerMask collisionMask;
+
+    public BoolIntEvent onPlayerMove;
+
+    private Vector3 previousMousePosition;
+    private Vector3 mouseFinalPositionWhenLastMoved;
     #endregion
 }

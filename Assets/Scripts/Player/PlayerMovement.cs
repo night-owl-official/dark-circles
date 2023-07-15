@@ -4,18 +4,28 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [System.Serializable]
-public class BoolIntEvent : UnityEvent<bool, int> { }
+public class IntEvent : UnityEvent<int> { }
 [System.Serializable]
 public class BoolEvent : UnityEvent<bool> { }
 
 public class PlayerMovement : MonoBehaviour {
     #region Methods
+    public void ToggleMovement(bool set) {
+        canPlayerMove = set;
+    }
+
     // Update is called once per frame
     private void Update() {
         MoveWhenPathClear();
     }
 
     private void MoveWhenPathClear() {
+        if (!canPlayerMove) {
+            // Stop the running animation event
+            onPlayerMove?.Invoke(false);
+            return;
+        }
+
         UpdateLatestWorldMousePosition();
         Vector3 movementDirection = GetMovementDirection();
 
@@ -30,15 +40,16 @@ public class PlayerMovement : MonoBehaviour {
 
             // Start running animation event
             int animMoveDir = GetAnimationMoveDirection(movementDirection);
-            onPlayerMove?.Invoke(true, animMoveDir);
+            onPlayerMove?.Invoke(true);
+            onPlayerMoveDirection?.Invoke(animMoveDir);
         } else {
             // Stop running animation when colliding and can't move
-            onPlayerMove?.Invoke(false, -1);
+            onPlayerMove?.Invoke(false);
         }
 
         if (HasPlayerReachedDestination()) {
             // Stop the running animation event
-            onPlayerMove?.Invoke(false, -1);
+            onPlayerMove?.Invoke(false);
         }
     }
 
@@ -154,10 +165,13 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField]
     private LayerMask collisionMask;
 
-    public BoolIntEvent onPlayerMove;
+    public IntEvent onPlayerMoveDirection;
+    public BoolEvent onPlayerMove;
     public BoolEvent onPlayerWalkSideways;
 
     private Vector3 previousMousePosition;
     private Vector3 mouseFinalPositionWhenLastMoved;
+
+    private bool canPlayerMove = true;
     #endregion
 }

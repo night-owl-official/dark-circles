@@ -9,17 +9,30 @@ public class PlayerAnimator : MonoBehaviour {
         Assert.IsNotNull(spriteRenderer, "SpriteRenderer was not assigned to PlayerMovement");
     }
 
+    public void OnPlayerAttackStart() {
+        // Unset animation attack flag
+        SetAttackingAnimation(false);
+        SetDirectionAnimation(-1);
+    }
+
+    public void OnPlayerAttackEnd() {
+        // Tell PlayerMovement to unlock movement
+        onPlayerDoneAttacking?.Invoke(true);
+    }
+
     public void FlipSpriteHorizontal(bool isFlipped) {
         spriteRenderer.flipX = isFlipped;
     }
 
-    public void SetWalkingAnimation(bool isSet, int direction) {
+    public void SetWalkingAnimation(bool isSet) {
         animator.SetBool(walkBooleanName, isSet);
-        animator.SetInteger(moveDirectionIntName, direction);
     }
 
-    public void SetAttackingAnimation(bool isSet, int direction) {
+    public void SetAttackingAnimation(bool isSet) {
         animator.SetBool(attackBooleanName, isSet);
+    }
+
+    public void SetDirectionAnimation(int direction) {
         animator.SetInteger(moveDirectionIntName, direction);
     }
 
@@ -42,5 +55,7 @@ public class PlayerAnimator : MonoBehaviour {
     private string moveDirectionIntName = "moveDirection";
     [SerializeField]
     private string hitTriggerName = "hit";
+
+    public BoolEvent onPlayerDoneAttacking;
     #endregion
 }

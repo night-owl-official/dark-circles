@@ -3832,7 +3832,7 @@ GameObject:
   - component: {fileID: 1409785495}
   - component: {fileID: 1409785496}
   - component: {fileID: 1409785498}
-  - component: {fileID: 1409785499}
+  - component: {fileID: 1409785500}
   m_Layer: 0
   m_Name: Dante
   m_TagString: Player
@@ -3920,10 +3920,25 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 192
+  onPlayerMoveDirection:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1815102575}
+        m_TargetAssemblyTypeName: PlayerAnimator, Assembly-CSharp
+        m_MethodName: SetDirectionAnimation
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onPlayerMove:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1409785499}
+      - m_Target: {fileID: 1815102575}
         m_TargetAssemblyTypeName: PlayerAnimator, Assembly-CSharp
         m_MethodName: SetWalkingAnimation
         m_Mode: 0
@@ -3938,7 +3953,7 @@ MonoBehaviour:
   onPlayerWalkSideways:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1409785499}
+      - m_Target: {fileID: 1815102575}
         m_TargetAssemblyTypeName: PlayerAnimator, Assembly-CSharp
         m_MethodName: FlipSpriteHorizontal
         m_Mode: 0
@@ -3950,7 +3965,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1409785499
+--- !u!114 &1409785500
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3959,15 +3974,70 @@ MonoBehaviour:
   m_GameObject: {fileID: 1409785492}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bae79adddf2e8c45af0508a9b0f5906, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f103333333644a4dbdd18fe4e457100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 1815102574}
-  animator: {fileID: 1815102573}
-  walkBooleanName: isWalking
-  attackBooleanName: isAttacking
-  moveDirectionIntName: moveDirection
-  hitTriggerName: hit
+  attackBtnName: Attack
+  onPlayerAttack:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1815102575}
+        m_TargetAssemblyTypeName: PlayerAnimator, Assembly-CSharp
+        m_MethodName: SetAttackingAnimation
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onPlayerAttackDirection:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1815102575}
+        m_TargetAssemblyTypeName: PlayerAnimator, Assembly-CSharp
+        m_MethodName: SetDirectionAnimation
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onPlayerSideAttack:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1815102575}
+        m_TargetAssemblyTypeName: PlayerAnimator, Assembly-CSharp
+        m_MethodName: FlipSpriteHorizontal
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onInitiateAttack:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1409785498}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: ToggleMovement
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1579985477
 GameObject:
   m_ObjectHideFlags: 0
@@ -15599,6 +15669,7 @@ GameObject:
   - component: {fileID: 1815102572}
   - component: {fileID: 1815102574}
   - component: {fileID: 1815102573}
+  - component: {fileID: 1815102575}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -15693,3 +15764,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!114 &1815102575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1815102571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bae79adddf2e8c45af0508a9b0f5906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 1815102574}
+  animator: {fileID: 1815102573}
+  walkBooleanName: isWalking
+  attackBooleanName: isAttacking
+  moveDirectionIntName: moveDirection
+  hitTriggerName: hit
+  onPlayerDoneAttacking:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1409785498}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: ToggleMovement
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

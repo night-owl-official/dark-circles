@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class PlayerAttack : MonoBehaviour {
     #region Methods
@@ -18,6 +19,8 @@ public class PlayerAttack : MonoBehaviour {
         // Attack animation set
         onPlayerAttack?.Invoke(true);
         onPlayerAttackDirection?.Invoke(animationAttackDir);
+
+        InstantiateWeapon();
     }
 
     private bool HasPlayerAttacked() {
@@ -73,11 +76,24 @@ public class PlayerAttack : MonoBehaviour {
 
         return attackingLeft;
     }
+
+    private void InstantiateWeapon() {
+        Assert.IsNotNull(playerWeapon, "Player is missing a weapon");
+
+        Instantiate(playerWeapon, transform.position, Quaternion.identity);
+    }
     #endregion
 
     #region Member variables
+    [Header("Input")]
+
     [SerializeField]
     private string attackBtnName = "Attack";
+
+    [Header("Attack")]
+
+    [SerializeField]
+    private GameObject playerWeapon = null;
 
     public BoolEvent onPlayerAttack;
     public IntEvent onPlayerAttackDirection;

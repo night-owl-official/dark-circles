@@ -3833,7 +3833,7 @@ GameObject:
   - component: {fileID: 1409785496}
   - component: {fileID: 1409785498}
   - component: {fileID: 1409785500}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Dante
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -3978,6 +3978,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackBtnName: Attack
+  playerWeapon: {fileID: 8072768568134722076, guid: eb3b352983ac2d142834cc8122d42b5b, type: 3}
   onPlayerAttack:
     m_PersistentCalls:
       m_Calls:
@@ -15670,7 +15671,7 @@ GameObject:
   - component: {fileID: 1815102574}
   - component: {fileID: 1815102573}
   - component: {fileID: 1815102575}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

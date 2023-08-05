@@ -3981,6 +3981,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackBtnName: Attack
   playerWeapon: {fileID: 8072768568134722076, guid: eb3b352983ac2d142834cc8122d42b5b, type: 3}
+  cooldown: 1
   onPlayerAttack:
     m_PersistentCalls:
       m_Calls:

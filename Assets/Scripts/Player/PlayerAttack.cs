@@ -5,11 +5,23 @@ public class PlayerAttack : MonoBehaviour {
     #region Methods
     // Update is called once per frame
     private void Update() {
-        AttackOnInput();
+        RunCDTimerAndSetAtkFlag();
+        AttackOnInputAfterCD();
     }
 
-    private void AttackOnInput() {
-        if (!HasPlayerAttacked()) return;
+    private void RunCDTimerAndSetAtkFlag() {
+        if (!canAttack) {
+            cdTimer += Time.deltaTime;
+
+            if (cdTimer >= cooldown) {
+                canAttack = true;
+                cdTimer = 0f;
+            }
+        }
+    }
+
+    private void AttackOnInputAfterCD() {
+        if (!CanPlayerAttack()) return;
 
         // Stop movement if the player was moving
         onInitiateAttack?.Invoke(false);
@@ -19,10 +31,12 @@ public class PlayerAttack : MonoBehaviour {
         // Attack animation set
         onPlayerAttack?.Invoke(true);
         onPlayerAttackDirection?.Invoke(animationAttackDir);
+
+        canAttack = false;
     }
 
-    private bool HasPlayerAttacked() {
-        return Input.GetButtonDown(attackBtnName);
+    private bool CanPlayerAttack() {
+        return Input.GetButtonDown(attackBtnName) && canAttack;
     }
 
     private int GetAnimationAttackDirection(Vector3 mousePos) {
@@ -93,9 +107,15 @@ public class PlayerAttack : MonoBehaviour {
     [SerializeField]
     private GameObject playerWeapon = null;
 
+    [SerializeField]
+    private float cooldown = 2f;
+
     public BoolEvent onPlayerAttack;
     public IntEvent onPlayerAttackDirection;
     public BoolEvent onPlayerSideAttack;
     public BoolEvent onInitiateAttack;
+
+    private float cdTimer = 0f;
+    private bool canAttack = true;
     #endregion
 }

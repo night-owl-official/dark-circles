@@ -21,19 +21,19 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: 86435231, guid: 5aeb2ddc730ee5a4c8a133187feb7d0e, type: 3}
-    - time: 0.06666667
+    - time: 0.05
       value: {fileID: 1499672398, guid: 5aeb2ddc730ee5a4c8a133187feb7d0e, type: 3}
-    - time: 0.13333334
+    - time: 0.1
       value: {fileID: 175067761, guid: 5aeb2ddc730ee5a4c8a133187feb7d0e, type: 3}
-    - time: 0.2
+    - time: 0.15
       value: {fileID: 229800104, guid: 5aeb2ddc730ee5a4c8a133187feb7d0e, type: 3}
-    - time: 0.26666668
+    - time: 0.2
       value: {fileID: 1130163308, guid: 5aeb2ddc730ee5a4c8a133187feb7d0e, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 15
+  m_SampleRate: 20
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -58,7 +58,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.33333334
+    m_StopTime: 0.25
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -85,7 +85,14 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.33333334
+  - time: 0.15
+    functionName: InstantiateWeapon
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.25
     functionName: OnPlayerAttackEnd
     data: 
     objectReferenceParameter: {fileID: 0}

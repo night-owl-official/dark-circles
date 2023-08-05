@@ -19,8 +19,6 @@ public class PlayerAttack : MonoBehaviour {
         // Attack animation set
         onPlayerAttack?.Invoke(true);
         onPlayerAttackDirection?.Invoke(animationAttackDir);
-
-        InstantiateWeapon();
     }
 
     private bool HasPlayerAttacked() {
@@ -77,7 +75,7 @@ public class PlayerAttack : MonoBehaviour {
         return attackingLeft;
     }
 
-    private void InstantiateWeapon() {
+    public void InstantiateWeapon() {
         Assert.IsNotNull(playerWeapon, "Player is missing a weapon");
 
         Instantiate(playerWeapon, transform.position, Quaternion.identity);

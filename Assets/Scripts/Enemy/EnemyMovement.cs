@@ -23,11 +23,7 @@ public class EnemyMovement : MonoBehaviour {
         Assert.IsNotNull(target, "No target found on EnemyMovement");
         Assert.IsNotNull(spriteRenderer, "No sprite renderer found on EnemyMovement");
 
-        if (target.position.x > transform.position.x) {
-            spriteRenderer.flipX = false;
-        } else {
-            spriteRenderer.flipX = true;
-        }
+        spriteRenderer.flipX = target.position.x < transform.position.x;
     }
 
     private void UpdatePositionBasedOnTarget() {

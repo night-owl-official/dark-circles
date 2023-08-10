@@ -270,7 +270,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b69f845badbbfe469ba596cac9aae6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.05
+  speed: 0.08
+  collisionMinDistance: 0.1
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!95 &41909190
 Animator:
   serializedVersion: 5

@@ -23,7 +23,8 @@ public class Projectile : MonoBehaviour {
             return;
         }
 
-        // Target will be most likely the player here
+        // Target's the player
+        targetPosition = FindObjectOfType<PlayerMovement>().transform.position;
     }
 
     private void SetRotation() {

@@ -137,7 +137,8 @@ GameObject:
   - component: {fileID: 41909185}
   - component: {fileID: 41909190}
   - component: {fileID: 41909189}
-  m_Layer: 0
+  - component: {fileID: 41909191}
+  m_Layer: 7
   m_Name: enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -271,10 +272,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.08
-  collisionMinDistance: 0.1
-  collisionMask:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!95 &41909190
 Animator:
   serializedVersion: 5
@@ -295,6 +292,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &41909191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41909184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f808f550244f50f4d9fe89d2746ddb3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 6894919365257305016, guid: 79dff5df4ac43ab4cb33073d5743c8de, type: 3}
+  attackRange: 0.8
+  cooldown: 1.5
 --- !u!1 &193920011
 GameObject:
   m_ObjectHideFlags: 0

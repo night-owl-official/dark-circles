@@ -14,7 +14,6 @@ public class EnemyAttack : MonoBehaviour {
 
         if (IsTargetInRange() && canAttack) {
             PerformBasicAttack();
-
             canAttack = false;
         }
     }
@@ -44,6 +43,20 @@ public class EnemyAttack : MonoBehaviour {
         projectile.SetVelocity(GetProjectileVelocityFacingTarget());
     }
 
+    private void PerformRadiusAttack() {
+        int randomNumBullets = Random.Range(minProjectiles, maxProjectiles + 1);
+
+        for (int i = 0; i < randomNumBullets; i++) {
+            float angle = i * (360f /  randomNumBullets);
+            Vector3 spawnPosition =
+                transform.position + Quaternion.Euler(0, 0, angle) * Vector3.right * shootingRadius;
+
+            Projectile projectile =
+                Instantiate(weapon, spawnPosition, Quaternion.identity).GetComponent<Projectile>();
+            projectile.SetVelocity(Quaternion.Euler(0, 0, angle) * Vector2.right);
+        }
+    }
+
     private Vector2 GetProjectileVelocityFacingTarget() {
         Vector3 direction = target.position - transform.position;
         return new Vector2(direction.x, direction.y).normalized;
@@ -53,6 +66,15 @@ public class EnemyAttack : MonoBehaviour {
     #region Member variables
     [SerializeField]
     private GameObject weapon;
+
+    [SerializeField]
+    private int minProjectiles = 1;
+
+    [SerializeField]
+    private int maxProjectiles = 5;
+
+    [SerializeField]
+    private float shootingRadius = 3f;
 
     [SerializeField]
     private float attackRange = 2f;

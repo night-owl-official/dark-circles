@@ -305,6 +305,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 6894919365257305016, guid: 79dff5df4ac43ab4cb33073d5743c8de, type: 3}
+  minProjectiles: 2
+  maxProjectiles: 5
+  shootingRadius: 0.02
   attackRange: 0.8
   cooldown: 1.5
 --- !u!1 &193920011

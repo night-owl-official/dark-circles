@@ -30,16 +30,30 @@ public class EnemyAttack : MonoBehaviour {
         }
     }
 
-    private void PerformBasicAttack() {
-        Assert.IsNotNull(weapon, "EnemyAttack is missing a weapon");
-
-        Instantiate(weapon, transform.position, Quaternion.identity);
-    }
-
     private bool IsTargetInRange() {
         Assert.IsNotNull(target, "EnemyAttack does not have a target");
 
         return Vector2.Distance(transform.position, target.position) <= attackRange;
+    }
+
+    private void PerformBasicAttack() {
+        Assert.IsNotNull(weapon, "EnemyAttack is missing a weapon");
+
+        Projectile projectile =
+            Instantiate(weapon, transform.position, Quaternion.identity).GetComponent<Projectile>();
+        projectile.SetRotation(GetProjectileRotationFacingTarget());
+        projectile.SetVelocity(GetProjectileVelocityFacingTarget());
+    }
+
+    private Quaternion GetProjectileRotationFacingTarget() {
+        Vector3 rotation = transform.position - target.position;
+        float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+        return Quaternion.Euler(0, 0, rot + 90f);
+    }
+
+    private Vector2 GetProjectileVelocityFacingTarget() {
+        Vector3 direction = target.position - transform.position;
+        return new Vector2(direction.x, direction.y).normalized;
     }
     #endregion
 

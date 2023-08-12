@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Assertions;
+using static UnityEngine.GraphicsBuffer;
 
 public class PlayerAttack : MonoBehaviour {
     #region Methods
@@ -92,7 +93,25 @@ public class PlayerAttack : MonoBehaviour {
     public void InstantiateWeapon() {
         Assert.IsNotNull(playerWeapon, "Player is missing a weapon");
 
-        Instantiate(playerWeapon, transform.position, Quaternion.identity);
+        Projectile projectile =
+            Instantiate(playerWeapon, transform.position, Quaternion.identity).GetComponent<Projectile>();
+        projectile.SetRotation(GetProjectileRotationFacingMouse());
+        projectile.SetVelocity(GetProjectileVelocityFacingMouse());
+    }
+
+    private Quaternion GetProjectileRotationFacingMouse() {
+        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        Vector3 rotation = transform.position - mouseWorldPos;
+        float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+        return Quaternion.Euler(0, 0, rot + 90f);
+    }
+
+    private Vector2 GetProjectileVelocityFacingMouse() {
+        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        Vector3 direction = mouseWorldPos - transform.position;
+        return new Vector2(direction.x, direction.y).normalized;
     }
     #endregion
 

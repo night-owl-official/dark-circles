@@ -10,33 +10,13 @@ public class Projectile : MonoBehaviour {
         Destroy(gameObject);
     }
 
-    // Start is called before the first frame update
-    private void Start() {
-        SetTarget();
-        SetRotation();
-        SetVelocity();
+    public void SetRotation(Quaternion projectileRotation) {
+        transform.rotation = projectileRotation;
     }
 
-    private void SetTarget() {
-        if (aimAtMouse) {
-            targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            return;
-        }
-
-        // Target's the player
-        targetPosition = FindObjectOfType<PlayerMovement>().transform.position;
-    }
-
-    private void SetRotation() {
-        Vector3 rotation = transform.position - targetPosition;
-        float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, rot + 90f);
-    }
-
-    private void SetVelocity() {
+    public void SetVelocity(Vector2 projectileVelocity) {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        Vector3 direction = targetPosition - transform.position;
-        rb.velocity = new Vector2(direction.x, direction.y).normalized * force;
+        rb.velocity = projectileVelocity * force;
     }
     #endregion
 
@@ -46,7 +26,5 @@ public class Projectile : MonoBehaviour {
 
     [SerializeField]
     private float force = 5f;
-
-    private Vector3 targetPosition;
     #endregion
 }

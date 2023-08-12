@@ -41,14 +41,7 @@ public class EnemyAttack : MonoBehaviour {
 
         Projectile projectile =
             Instantiate(weapon, transform.position, Quaternion.identity).GetComponent<Projectile>();
-        projectile.SetRotation(GetProjectileRotationFacingTarget());
         projectile.SetVelocity(GetProjectileVelocityFacingTarget());
-    }
-
-    private Quaternion GetProjectileRotationFacingTarget() {
-        Vector3 rotation = transform.position - target.position;
-        float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-        return Quaternion.Euler(0, 0, rot + 90f);
     }
 
     private Vector2 GetProjectileVelocityFacingTarget() {

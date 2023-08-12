@@ -22,9 +22,6 @@ public class Projectile : MonoBehaviour {
 
     #region Member variables
     [SerializeField]
-    private bool aimAtMouse = false;
-
-    [SerializeField]
     private float force = 5f;
     #endregion
 }

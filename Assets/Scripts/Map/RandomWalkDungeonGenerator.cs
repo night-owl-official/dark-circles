@@ -3,14 +3,8 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-public class RandomWalkDungeonGenerator : MonoBehaviour {
+public class RandomWalkDungeonGenerator : AbstractDungeonGenerator {
     #region Methods
-    public void RunProceduralGeneration() {
-        Assert.IsNotNull(painter, "TilemapPainter reference not found in RandomWalkGenerator");
-
-        painter.PaintFloor(RunRandomWalk());
-    }
-
     private HashSet<Vector2Int> RunRandomWalk() {
         HashSet<Vector2Int> floorPositions = new();
         Vector2Int currentPosition = startPosition;
@@ -28,20 +22,20 @@ public class RandomWalkDungeonGenerator : MonoBehaviour {
 
         return floorPositions;
     }
+
+    protected override void RunProceduralGenerator() {
+        Assert.IsNotNull(painter, "TilemapPainter reference not found in RandomWalkGenerator");
+
+        painter.PaintFloor(RunRandomWalk());
+    }
     #endregion
 
     #region Member variables
-    [SerializeField]
-    private Vector2Int startPosition = Vector2Int.zero;
-
     [SerializeField]
     private int iterations = 10;
     [SerializeField]
     private int walkLength = 10;
     [SerializeField]
     private bool startRandomlyEachIteration = true;
-
-    [SerializeField]
-    private TilemapPainter painter;
     #endregion
 }

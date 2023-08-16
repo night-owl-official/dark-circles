@@ -468,8 +468,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1121276345}
-        m_TargetAssemblyTypeName: RandomWalkDungeonGenerator, Assembly-CSharp
-        m_MethodName: RunProceduralGeneration
+        m_TargetAssemblyTypeName: AbstractDungeonGenerator, Assembly-CSharp
+        m_MethodName: GenerateDungeon
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -547,10 +547,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPosition: {x: 0, y: 0}
+  painter: {fileID: 616911971}
   iterations: 10
   walkLength: 10
   startRandomlyEachIteration: 1
-  painter: {fileID: 616911971}
 --- !u!4 &1121276346
 Transform:
   m_ObjectHideFlags: 0
@@ -765,6 +765,18 @@ PrefabInstance:
       value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 5541833367234475969, guid: 7ce54f732d3adb241a5cb3af25e5f232, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.030153075
+      objectReference: {fileID: 0}
+    - target: {fileID: 5541833367234475969, guid: 7ce54f732d3adb241a5cb3af25e5f232, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.046053838
+      objectReference: {fileID: 0}
+    - target: {fileID: 5541833367234475969, guid: 7ce54f732d3adb241a5cb3af25e5f232, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.20754719
+      objectReference: {fileID: 0}
+    - target: {fileID: 5541833367234475969, guid: 7ce54f732d3adb241a5cb3af25e5f232, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
       value: 0.18828125
       objectReference: {fileID: 0}
@@ -800,11 +812,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6014602589348823712, guid: d933b25d5d56bba4a9cf41cf7c48487e, type: 3}
       propertyPath: m_Tiles.Array.data[0].first.x
-      value: -1
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 6014602589348823712, guid: d933b25d5d56bba4a9cf41cf7c48487e, type: 3}
       propertyPath: m_Tiles.Array.data[0].first.y
-      value: -1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6014602589348823712, guid: d933b25d5d56bba4a9cf41cf7c48487e, type: 3}
       propertyPath: m_Tiles.Array.data[1].first.x
@@ -824,19 +836,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6014602589348823712, guid: d933b25d5d56bba4a9cf41cf7c48487e, type: 3}
       propertyPath: m_TileColorArray.Array.data[0].m_Data.a
-      value: 3.8886e-41
+      value: 3.881e-41
       objectReference: {fileID: 0}
     - target: {fileID: 6014602589348823712, guid: d933b25d5d56bba4a9cf41cf7c48487e, type: 3}
       propertyPath: m_TileColorArray.Array.data[0].m_Data.b
-      value: 3.8886e-41
+      value: 3.881e-41
       objectReference: {fileID: 0}
     - target: {fileID: 6014602589348823712, guid: d933b25d5d56bba4a9cf41cf7c48487e, type: 3}
       propertyPath: m_TileColorArray.Array.data[0].m_Data.g
-      value: 3.8886e-41
+      value: 3.881e-41
       objectReference: {fileID: 0}
     - target: {fileID: 6014602589348823712, guid: d933b25d5d56bba4a9cf41cf7c48487e, type: 3}
       propertyPath: m_TileColorArray.Array.data[0].m_Data.r
-      value: 3.8886e-41
+      value: 3.881e-41
       objectReference: {fileID: 0}
     - target: {fileID: 6014602589348823712, guid: d933b25d5d56bba4a9cf41cf7c48487e, type: 3}
       propertyPath: m_TileSpriteArray.Array.data[15].m_Data
@@ -868,7 +880,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6014602589348823712, guid: d933b25d5d56bba4a9cf41cf7c48487e, type: 3}
       propertyPath: m_TileMatrixArray.Array.data[2].m_Data.e00
-      value: -9.30968e-32
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6014602589348823712, guid: d933b25d5d56bba4a9cf41cf7c48487e, type: 3}
       propertyPath: m_TileMatrixArray.Array.data[2].m_Data.e02
@@ -880,7 +892,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6014602589348823712, guid: d933b25d5d56bba4a9cf41cf7c48487e, type: 3}
       propertyPath: m_TileMatrixArray.Array.data[2].m_Data.e10
-      value: 1.06e-43
+      value: 7.62e-43
       objectReference: {fileID: 0}
     - target: {fileID: 6014602589348823712, guid: d933b25d5d56bba4a9cf41cf7c48487e, type: 3}
       propertyPath: m_TileMatrixArray.Array.data[2].m_Data.e11
@@ -904,7 +916,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6014602589348823712, guid: d933b25d5d56bba4a9cf41cf7c48487e, type: 3}
       propertyPath: m_TileMatrixArray.Array.data[2].m_Data.e22
-      value: 9.734237e-19
+      value: 3.9222278e-19
       objectReference: {fileID: 0}
     - target: {fileID: 6014602589348823712, guid: d933b25d5d56bba4a9cf41cf7c48487e, type: 3}
       propertyPath: m_TileMatrixArray.Array.data[2].m_Data.e23

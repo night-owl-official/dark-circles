@@ -6,16 +6,18 @@ using UnityEngine.Assertions;
 public class RandomWalkDungeonGenerator : AbstractDungeonGenerator {
     #region Methods
     private HashSet<Vector2Int> RunRandomWalk() {
+        Assert.IsNotNull(randomWalkSO, "Scriptable object missing in RandomWalkDungeonGenerator");
+
         HashSet<Vector2Int> floorPositions = new();
         Vector2Int currentPosition = startPosition;
 
-        for (int i = 0; i < iterations; ++i) {
+        for (int i = 0; i < randomWalkSO.iterations; ++i) {
             HashSet<Vector2Int> path =
-                ProceduralGenerator.RandomWalk(currentPosition, walkLength);
+                ProceduralGenerator.RandomWalk(currentPosition, randomWalkSO.walkLength);
 
             floorPositions.UnionWith(path);
 
-            if (startRandomlyEachIteration) {
+            if (randomWalkSO.startRandomlyEachIteration) {
                 currentPosition = floorPositions.ElementAt(Random.Range(0, floorPositions.Count));
             }
         }
@@ -38,10 +40,6 @@ public class RandomWalkDungeonGenerator : AbstractDungeonGenerator {
 
     #region Member variables
     [SerializeField]
-    private int iterations = 10;
-    [SerializeField]
-    private int walkLength = 10;
-    [SerializeField]
-    private bool startRandomlyEachIteration = true;
+    private RandomWalkSO randomWalkSO;
     #endregion
 }

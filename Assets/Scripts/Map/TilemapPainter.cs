@@ -12,13 +12,17 @@ public class TilemapPainter : MonoBehaviour {
     }
 
     #region Methods
+    public void ClearAll() {
+        Assert.IsNotNull(floorTilemap, "A tilemap for the floor is missing in TilemapPainter");
+
+        floorTilemap.ClearAllTiles();
+    }
+
     public void PaintFloor(IEnumerable<Vector2Int> positions) {
         PaintTiles(positions, floorTilemap, TileType.FLOOR);
     }
 
     private void PaintTiles(IEnumerable<Vector2Int> positions, Tilemap tilemap, TileType tileType) {
-        ClearTilemap(tilemap);
-
         foreach (Vector2Int position in positions) {
             PaintTile(position, tilemap, tileType);
         }

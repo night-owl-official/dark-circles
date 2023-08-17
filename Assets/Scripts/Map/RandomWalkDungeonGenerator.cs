@@ -5,19 +5,19 @@ using UnityEngine.Assertions;
 
 public class RandomWalkDungeonGenerator : AbstractDungeonGenerator {
     #region Methods
-    private HashSet<Vector2Int> RunRandomWalk(RandomWalkSO parameters) {
-        Assert.IsNotNull(parameters, "Scriptable object missing in RandomWalkDungeonGenerator");
+    protected HashSet<Vector2Int> RunRandomWalk(Vector2Int position) {
+        Assert.IsNotNull(randomWalkSO, "Scriptable object missing in RandomWalkDungeonGenerator");
 
         HashSet<Vector2Int> floorPositions = new();
-        Vector2Int currentPosition = startPosition;
+        Vector2Int currentPosition = position;
 
-        for (int i = 0; i < parameters.iterations; ++i) {
+        for (int i = 0; i < randomWalkSO.iterations; ++i) {
             HashSet<Vector2Int> path =
-                ProceduralGenerator.RandomWalk(currentPosition, parameters.walkLength);
+                ProceduralGenerator.RandomWalk(currentPosition, randomWalkSO.walkLength);
 
             floorPositions.UnionWith(path);
 
-            if (parameters.startRandomlyEachIteration) {
+            if (randomWalkSO.startRandomlyEachIteration) {
                 currentPosition = floorPositions.ElementAt(Random.Range(0, floorPositions.Count));
             }
         }
@@ -28,7 +28,7 @@ public class RandomWalkDungeonGenerator : AbstractDungeonGenerator {
     protected override void RunProceduralGenerator() {
         Assert.IsNotNull(painter, "TilemapPainter reference not found in RandomWalkGenerator");
 
-        var floorPositions = RunRandomWalk(randomWalkSO);
+        var floorPositions = RunRandomWalk(startPosition);
 
         painter.PaintFloor(floorPositions);
         WallGenerator.GenerateWalls(floorPositions, painter);
@@ -43,6 +43,6 @@ public class RandomWalkDungeonGenerator : AbstractDungeonGenerator {
 
     #region Member variables
     [SerializeField]
-    private RandomWalkSO randomWalkSO;
+    protected RandomWalkSO randomWalkSO;
     #endregion
 }

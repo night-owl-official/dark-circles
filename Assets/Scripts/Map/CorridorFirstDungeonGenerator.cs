@@ -17,6 +17,11 @@ public class CorridorFirstDungeonGenerator : RandomWalkDungeonGenerator {
         RunCorridorRandomWalk(floorPositions, potentialRoomPositions);
         RunRoomRandomWalk(roomPositions, potentialRoomPositions);
 
+        if (!deadEnds) {
+            var deadEndPositions = GetAllDeadEnds(floorPositions);
+            CreateRoomAtDeadEnd(deadEndPositions, roomPositions);
+        }
+
         floorPositions.UnionWith(roomPositions);
 
         painter.PaintFloor(floorPositions);
@@ -47,6 +52,36 @@ public class CorridorFirstDungeonGenerator : RandomWalkDungeonGenerator {
             roomPositions.UnionWith(roomFloor);
         }
     }
+
+    private List<Vector2Int> GetAllDeadEnds(HashSet<Vector2Int> floorPositions) {
+        List<Vector2Int> deadEndPositions = new();
+
+        foreach (var floorPosition in floorPositions) {
+            int neighborsCount = 0;
+
+            foreach (var direction in Direction2D.cardinalDirections) {
+                if (floorPositions.Contains(floorPosition + direction)) {
+                    neighborsCount++;
+                }
+            }
+
+            if (neighborsCount == 1) {
+                deadEndPositions.Add(floorPosition);
+            }
+        }
+
+        return deadEndPositions;
+    }
+
+    private void CreateRoomAtDeadEnd(List<Vector2Int> deadEndPositions,
+        HashSet<Vector2Int> roomFloors) {
+        foreach (var deadEndPosition in deadEndPositions) {
+            if (!roomFloors.Contains(deadEndPosition)) {
+                var room = RunRandomWalk(deadEndPosition);
+                roomFloors.UnionWith(room);
+            }
+        }
+    }
     #endregion
 
     #region Member variables
@@ -58,5 +93,8 @@ public class CorridorFirstDungeonGenerator : RandomWalkDungeonGenerator {
     [SerializeField]
     [Range(0.1f, 1f)]
     private float roomPercent = 0.8f;
+
+    [SerializeField]
+    private bool deadEnds = false;
     #endregion
 }

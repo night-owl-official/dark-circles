@@ -28,7 +28,10 @@ public class RandomWalkDungeonGenerator : AbstractDungeonGenerator {
     protected override void RunProceduralGenerator() {
         Assert.IsNotNull(painter, "TilemapPainter reference not found in RandomWalkGenerator");
 
-        painter.PaintFloor(RunRandomWalk());
+        var floorPositions = RunRandomWalk();
+
+        painter.PaintFloor(floorPositions);
+        WallGenerator.GenerateWalls(floorPositions, painter);
     }
 
     protected override void RunGeneratorCleanup() {

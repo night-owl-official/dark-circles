@@ -16,6 +16,11 @@ public class TilemapPainter : MonoBehaviour {
         Assert.IsNotNull(floorTilemap, "A tilemap for the floor is missing in TilemapPainter");
 
         floorTilemap.ClearAllTiles();
+        wallsTilemap.ClearAllTiles();
+    }
+
+    public void PaintSingleWall(Vector2Int wallPosition) {
+        PaintTile(wallPosition, wallsTilemap, topWall);
     }
 
     public void PaintFloor(IEnumerable<Vector2Int> positions) {
@@ -37,6 +42,11 @@ public class TilemapPainter : MonoBehaviour {
     private void PaintTile(Vector2Int position, Tilemap tilemap, TileType tileType) {
         Vector3Int tileCellPosition = tilemap.WorldToCell((Vector3Int) position);
         tilemap.SetTile(tileCellPosition, GetTileFromTileType(tileType));
+    }
+
+    private void PaintTile(Vector2Int position, Tilemap tilemap, TileBase tile) {
+        Vector3Int tileCellPosition = tilemap.WorldToCell((Vector3Int) position);
+        tilemap.SetTile(tileCellPosition, tile);
     }
 
     private TileBase GetTileFromTileType(TileType tileType) {
@@ -65,5 +75,12 @@ public class TilemapPainter : MonoBehaviour {
     private Tilemap floorTilemap;
     [SerializeField]
     private TileBase[] floorTiles;
+
+    [Header("Walls")]
+
+    [SerializeField]
+    private Tilemap wallsTilemap;
+    [SerializeField]
+    private TileBase topWall;
     #endregion
 }

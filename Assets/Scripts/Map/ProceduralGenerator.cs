@@ -16,6 +16,22 @@ public static class ProceduralGenerator {
 
         return path;
     }
+
+    public static List<Vector2Int> RandomWalkCorridor(Vector2Int startPosition, int corridorLength) {
+        List<Vector2Int> corridor = new();
+
+        Vector2Int currentPosition = startPosition;
+        corridor.Add(currentPosition);
+
+        Vector2Int direction = Direction2D.GetRandomCardinalDirection();
+
+        for (int i = 0; i < corridorLength; ++i) {
+            currentPosition += direction;
+            corridor.Add(currentPosition);
+        }
+
+        return corridor;
+    }
 }
 
 public static class Direction2D {

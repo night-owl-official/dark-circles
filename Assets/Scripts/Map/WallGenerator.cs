@@ -3,10 +3,48 @@ using UnityEngine;
 
 public static class WallGenerator {
     public static void GenerateWalls(HashSet<Vector2Int> floorPositions, TilemapPainter painter) {
-        var wallPositions = GetWallPositions(floorPositions, Direction2D.cardinalDirections);
+        var basicWallPositions = GetWallPositions(floorPositions, Direction2D.cardinalDirections);
+        var cornerWallPositions = GetWallPositions(floorPositions, Direction2D.diagonalDirections);
 
-        foreach (var position in wallPositions) {
-            painter.PaintSingleWall(position);
+        CreateBasicWalls(basicWallPositions, floorPositions, painter);
+        CreateCornerWalls(cornerWallPositions, floorPositions, painter);
+    }
+
+    private static void CreateBasicWalls(HashSet<Vector2Int> basicWallPositions,
+        HashSet<Vector2Int> floorPositions,
+        TilemapPainter painter) {
+        foreach (var wallPosition in basicWallPositions) {
+            string neighborsBinaryType = "";
+
+            foreach (var direction in Direction2D.cardinalDirections) {
+                var neighborPosition = wallPosition + direction;
+                if (floorPositions.Contains(neighborPosition)) {
+                    neighborsBinaryType += "1";
+                } else {
+                    neighborsBinaryType += "0";
+                }
+            }
+
+            painter.PaintBasicWall(wallPosition, neighborsBinaryType);
+        }
+    }
+
+    private static void CreateCornerWalls(HashSet<Vector2Int> cornerWallPositions,
+        HashSet<Vector2Int> floorPositions,
+        TilemapPainter painter) {
+        foreach (var wallPosition in cornerWallPositions) {
+            string neighborsBinaryType = "";
+
+            foreach (var direction in Direction2D.fullDirections) {
+                var neighborPosition = wallPosition + direction;
+                if (floorPositions.Contains(neighborPosition)) {
+                    neighborsBinaryType += "1";
+                } else {
+                    neighborsBinaryType += "0";
+                }
+            }
+
+            painter.PaintCornerWall(wallPosition, neighborsBinaryType);
         }
     }
 

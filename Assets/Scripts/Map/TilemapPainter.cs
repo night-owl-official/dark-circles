@@ -19,6 +19,7 @@ public class TilemapPainter : MonoBehaviour {
         WALL_DIAGONAL_DOWN_RIGHT,
         WALL_DIAGONAL_TOP_LEFT,
         WALL_DIAGONAL_DOWN_LEFT,
+        WALL_FULL,
         OBSTACLE,
         DECAL
     }
@@ -43,6 +44,8 @@ public class TilemapPainter : MonoBehaviour {
             tileType = TileType.WALL_DOWN;
         } else if (WallTypesHelper.wallSideLeft.Contains(wallTypeBinary)) {
             tileType = TileType.WALL_LEFT;
+        } else if (WallTypesHelper.wallFull.Contains(wallTypeBinary)) {
+            tileType = TileType.WALL_FULL;
         }
 
         if (tileType != TileType.NONE)
@@ -65,6 +68,8 @@ public class TilemapPainter : MonoBehaviour {
             tileType = TileType.WALL_DIAGONAL_DOWN_LEFT;
         } else if (WallTypesHelper.wallDiagonalCornerUpLeft.Contains(wallTypeBinary)) {
             tileType = TileType.WALL_DIAGONAL_TOP_LEFT;
+        } else if (WallTypesHelper.wallFullEightDirections.Contains(wallTypeBinary)) {
+            tileType = TileType.WALL_FULL;
         } else if (WallTypesHelper.wallBottmEightDirections.Contains(wallTypeBinary)) {
             tileType = TileType.WALL_DOWN;
         }
@@ -112,6 +117,9 @@ public class TilemapPainter : MonoBehaviour {
                 break;
             case TileType.WALL_LEFT:
                 tile = wallLeft[Random.Range(0, wallLeft.Length)];
+                break;
+            case TileType.WALL_FULL:
+                tile = wallFull[Random.Range(0, wallFull.Length)];
                 break;
             case TileType.WALL_INNER_DOWN_RIGHT:
                 tile = wallInnerCornerDownRight;
@@ -173,5 +181,7 @@ public class TilemapPainter : MonoBehaviour {
     private TileBase wallDiagonalCornerTopLeft;
     [SerializeField]
     private TileBase wallDiagonalCornerDownLeft;
+    [SerializeField]
+    private TileBase[] wallFull;
     #endregion
 }

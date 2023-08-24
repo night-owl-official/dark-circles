@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 5856814101129960035}
   - component: {fileID: 5856814101129960037}
   - component: {fileID: 5856814101129960039}
+  - component: {fileID: -3803809146717471334}
+  - component: {fileID: 4871252354924277956}
   m_Layer: 3
   m_Name: Dante
   m_TagString: Player
@@ -103,18 +105,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0000000037252903, y: 0.008628219}
+  m_Offset: {x: -0.001140058, y: 0.07019222}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.1}
-    oldSize: {x: 0.08, y: 0.08}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 0.08, y: 0.08}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.058678366, y: 0.03325642}
+  m_Size: {x: 0.7313225, y: 0.32055527}
   m_EdgeRadius: 0
 --- !u!50 &5856814101129960033
 Rigidbody2D:
@@ -169,8 +171,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb6e9c23c4f7a5b4e88164337ff0968a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.3
-  collisionMinDistance: 0.07
+  speed: 3
+  collisionMinDistance: 0.7
   collisionMask:
     serializedVersion: 2
     m_Bits: 192
@@ -318,6 +320,48 @@ MonoBehaviour:
       - m_Target: {fileID: 5856814101129960035}
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
         m_MethodName: ToggleMovement
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &-3803809146717471334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5856814101129960045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28a2214e52e5bab42a6f0f573c771b47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 3
+  onPlayerDeath: {fileID: 11400000, guid: 88ad0ed36e620ac4ebe9d6e897c9fb13, type: 2}
+--- !u!114 &4871252354924277956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5856814101129960045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3025784f96bd8fa4c86d314addd9b260, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameEvent: {fileID: 11400000, guid: ff08b6feca44bc940b84e2519526a0cc, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -3803809146717471334}
+        m_TargetAssemblyTypeName: PlayerHealth, Assembly-CSharp
+        m_MethodName: TakeDamage
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

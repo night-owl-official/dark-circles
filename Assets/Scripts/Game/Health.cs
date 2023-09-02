@@ -10,6 +10,10 @@ public class Health : MonoBehaviour {
     public virtual void TakeDamage(float damage) {
         currentHealth = Mathf.Max(0f, currentHealth - damage);
     }
+
+    public virtual void HealUp(float amount) {
+        currentHealth = Mathf.Min(maxHealth, currentHealth + amount);
+    }
     #endregion
 
     #region Member variables

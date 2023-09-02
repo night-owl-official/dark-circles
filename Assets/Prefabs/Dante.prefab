@@ -343,6 +343,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 3
   onPlayerDeath: {fileID: 11400000, guid: 88ad0ed36e620ac4ebe9d6e897c9fb13, type: 2}
+  onHealthUpdate: {fileID: 11400000, guid: 02e0bf455ad7c21408ce58aacf19c17f, type: 2}
 --- !u!114 &4871252354924277956
 MonoBehaviour:
   m_ObjectHideFlags: 0

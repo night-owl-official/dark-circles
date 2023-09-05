@@ -32,6 +32,11 @@ public class TilemapPainter : MonoBehaviour {
         wallsTilemap.ClearAllTiles();
     }
 
+    public Vector3 GetTileCenter(Vector2Int position) {
+        Vector3Int tileCellPosition = floorTilemap.WorldToCell((Vector3Int) position);
+        return floorTilemap.GetCellCenterWorld(tileCellPosition);
+    }
+
     public void PaintBasicWall(Vector2Int wallPosition, string wallType) {
         TileType tileType = TileType.NONE;
         int wallTypeBinary = Convert.ToInt32(wallType, 2);

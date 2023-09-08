@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minAmount: 40
   maxAmount: 60
-  obstacles:
+  decorations:
   - {fileID: 11400000, guid: ffc10bb1ccebd514995e311e74223621, type: 2}
   - {fileID: 11400000, guid: 5318e7a61df030e429e3f2921b8ea4b6, type: 2}
   - {fileID: 11400000, guid: 50b403ed4818fa44e95aae739f2eb5f1, type: 2}

@@ -22,6 +22,6 @@ public abstract class AbstractDungeonGenerator : MonoBehaviour {
     [SerializeField]
     protected TilemapPainter painter = null;
 
-    protected HashSet<Vector2Int> freePositions;
+    protected HashSet<Vector2Int> freePositions = new();
     #endregion
 }

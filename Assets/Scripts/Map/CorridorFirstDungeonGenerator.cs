@@ -13,7 +13,8 @@ public class CorridorFirstDungeonGenerator : RandomWalkDungeonGenerator {
 
     #region Methods
     private void OnDrawGizmos() {
-        if (!showGizmos) return;
+        if (!showGizmos)
+            return;
 
         for (int i = 0; i < roomsDictionary.Keys.Count; ++i) {
             Gizmos.color = randomColors[i];
@@ -23,7 +24,7 @@ public class CorridorFirstDungeonGenerator : RandomWalkDungeonGenerator {
                 Gizmos.DrawCube(painter.GetTileCenter(roomTile), Vector3.one);
             }
         }
-        
+
     }
 
     protected override void RunGeneratorCleanup() {
@@ -56,6 +57,15 @@ public class CorridorFirstDungeonGenerator : RandomWalkDungeonGenerator {
 
             decalGenerator.Place(freePositions, painter);
         }
+
+        if (obstacles) {
+            Assert.IsNotNull(obstacleGenerator, "No ObstacleGenerator passed in to CorridorFirstDungeonGenerator");
+
+            HashSet<Vector2Int> roomsNoCorridors = floorPositions.Except(corridorPositions).ToHashSet();
+            obstacleGenerator.Place(roomsNoCorridors, painter);
+
+            freePositions.ExceptWith(obstacleGenerator.GetUsedPositions());
+        }
     }
 
 
@@ -63,7 +73,9 @@ public class CorridorFirstDungeonGenerator : RandomWalkDungeonGenerator {
         floorPositions.Clear();
         corridorPositions.Clear();
         roomsDictionary.Clear();
+        freePositions.Clear();
         decalGenerator.ClearPositions();
+        obstacleGenerator.ClearPositions();
         randomColors.Clear();
     }
 
@@ -238,6 +250,12 @@ public class CorridorFirstDungeonGenerator : RandomWalkDungeonGenerator {
 
     [SerializeField]
     private DecalGenerator decalGenerator;
+
+    [SerializeField]
+    private bool obstacles = true;
+
+    [SerializeField]
+    private ObstacleGenerator obstacleGenerator;
 
     [Space(32)]
     [Header("Debug")]

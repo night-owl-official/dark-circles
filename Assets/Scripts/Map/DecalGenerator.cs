@@ -3,7 +3,6 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Tilemaps;
-using UnityEngine.UIElements;
 
 public class DecalGenerator : MonoBehaviour {
     #region Methods

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.SocialPlatforms;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
 
@@ -31,6 +32,7 @@ public class TilemapPainter : MonoBehaviour {
         floorTilemap.ClearAllTiles();
         wallsTilemap.ClearAllTiles();
         decalsTilemap.ClearAllTiles();
+        obstaclesTilemap.ClearAllTiles();
     }
 
     public Vector3 GetTileCenter(Vector2Int position) {
@@ -93,6 +95,13 @@ public class TilemapPainter : MonoBehaviour {
 
         Vector3Int tileCellPosition = decalsTilemap.WorldToCell((Vector3Int) position);
         decalsTilemap.SetTile(tileCellPosition, decal);
+    }
+
+    public void PaintObstacle(Vector2Int position, TileBase obstacle) {
+        Assert.IsNotNull(obstaclesTilemap, "Obstacles tilemap missing in TilemapPainter");
+
+        Vector3Int tileCellPosition = obstaclesTilemap.WorldToCell((Vector3Int) position);
+        obstaclesTilemap.SetTile(tileCellPosition, obstacle);
     }
 
     private void PaintTiles(IEnumerable<Vector2Int> positions, Tilemap tilemap, TileType tileType) {
@@ -201,5 +210,10 @@ public class TilemapPainter : MonoBehaviour {
 
     [SerializeField]
     private Tilemap decalsTilemap;
+
+    [Header("Obstacles")]
+
+    [SerializeField]
+    private Tilemap obstaclesTilemap;
     #endregion
 }

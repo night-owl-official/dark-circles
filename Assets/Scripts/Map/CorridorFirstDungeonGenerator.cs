@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class CorridorFirstDungeonGenerator : RandomWalkDungeonGenerator {
     public enum CorridorSize {
@@ -45,8 +46,16 @@ public class CorridorFirstDungeonGenerator : RandomWalkDungeonGenerator {
         TryGeneratingRoomsAtDeadEnds(roomPositions);
         TryIncreasingCorridorSize(corridors);
 
+        freePositions = new HashSet<Vector2Int>(floorPositions);
+
         painter.PaintFloor(floorPositions);
         WallGenerator.GenerateWalls(floorPositions, painter);
+
+        if (decals) {
+            Assert.IsNotNull(decalGenerator, "No DecalGenerator passed in to CorridorFirstDungeonGenerator");
+
+            decalGenerator.Place(freePositions, painter);
+        }
     }
 
 
@@ -54,6 +63,7 @@ public class CorridorFirstDungeonGenerator : RandomWalkDungeonGenerator {
         floorPositions.Clear();
         corridorPositions.Clear();
         roomsDictionary.Clear();
+        decalGenerator.ClearPositions();
         randomColors.Clear();
     }
 
@@ -219,6 +229,15 @@ public class CorridorFirstDungeonGenerator : RandomWalkDungeonGenerator {
 
     [SerializeField]
     private bool deadEnds = false;
+
+    [Space(16)]
+    [Header("Entities Placement")]
+
+    [SerializeField]
+    private bool decals = true;
+
+    [SerializeField]
+    private DecalGenerator decalGenerator;
 
     [Space(32)]
     [Header("Debug")]

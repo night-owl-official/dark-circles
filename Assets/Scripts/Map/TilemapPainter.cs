@@ -30,6 +30,7 @@ public class TilemapPainter : MonoBehaviour {
 
         floorTilemap.ClearAllTiles();
         wallsTilemap.ClearAllTiles();
+        decalsTilemap.ClearAllTiles();
     }
 
     public Vector3 GetTileCenter(Vector2Int position) {
@@ -85,6 +86,13 @@ public class TilemapPainter : MonoBehaviour {
 
     public void PaintFloor(IEnumerable<Vector2Int> positions) {
         PaintTiles(positions, floorTilemap, TileType.FLOOR);
+    }
+
+    public void PaintDecal(Vector2Int position, TileBase decal) {
+        Assert.IsNotNull(decalsTilemap, "Decals tilemap missing in TilemapPainter");
+
+        Vector3Int tileCellPosition = decalsTilemap.WorldToCell((Vector3Int) position);
+        decalsTilemap.SetTile(tileCellPosition, decal);
     }
 
     private void PaintTiles(IEnumerable<Vector2Int> positions, Tilemap tilemap, TileType tileType) {
@@ -188,5 +196,10 @@ public class TilemapPainter : MonoBehaviour {
     private TileBase wallDiagonalCornerDownLeft;
     [SerializeField]
     private TileBase[] wallFull;
+
+    [Header("Decals")]
+
+    [SerializeField]
+    private Tilemap decalsTilemap;
     #endregion
 }

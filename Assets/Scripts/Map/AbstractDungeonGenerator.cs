@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class AbstractDungeonGenerator : MonoBehaviour {
@@ -20,5 +21,7 @@ public abstract class AbstractDungeonGenerator : MonoBehaviour {
     protected Vector2Int startPosition = Vector2Int.zero;
     [SerializeField]
     protected TilemapPainter painter = null;
+
+    protected HashSet<Vector2Int> freePositions;
     #endregion
 }

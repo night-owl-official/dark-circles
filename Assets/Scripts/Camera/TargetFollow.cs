@@ -1,11 +1,9 @@
 using UnityEngine;
-using UnityEngine.Assertions;
 
 public class TargetFollow : MonoBehaviour {
     #region Methods
-    // Start is called before the first frame update
-    private void Start() {
-        Assert.IsNotNull(target);
+    public void SetTarget(GameObject targetToFollow) {
+        target = targetToFollow.transform;
     }
 
     // Update is called once per frame
@@ -14,6 +12,9 @@ public class TargetFollow : MonoBehaviour {
     }
 
     private void FollowTargetSmoothly() {
+        if (!target)
+            return;
+
         Vector3 cameraPosition =
             Vector3.Lerp(transform.position, target.position, followSpeed * Time.deltaTime);
         cameraPosition.z = transform.position.z;
@@ -26,7 +27,6 @@ public class TargetFollow : MonoBehaviour {
     [SerializeField]
     private float followSpeed = 1f;
 
-    [SerializeField]
     private Transform target = null;
     #endregion
 }

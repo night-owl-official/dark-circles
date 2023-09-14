@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3199674877702807762}
   - component: {fileID: 3199674877702807765}
-  - component: {fileID: 4112834195696962329}
   m_Layer: 0
   m_Name: PlayerSpawner
   m_TagString: Untagged
@@ -47,31 +46,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnee: {fileID: 5856814101129960045, guid: eb93ee4881a1cfb44b3c76f0e18305bc, type: 3}
   onPlayerSpawned: {fileID: 11400000, guid: 8566582a0dab29b428c51dadbd856247, type: 2}
---- !u!114 &4112834195696962329
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3199674877702807764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc59f562bfd21c54e852f878e52472ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GameEvent: {fileID: 11400000, guid: 10d0437a8c802aa4d8d7e9208a3185b7, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3199674877702807765}
-        m_TargetAssemblyTypeName: PlayerSpawner, Assembly-CSharp
-        m_MethodName: Spawn
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2

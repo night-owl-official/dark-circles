@@ -49,6 +49,12 @@ MonoBehaviour:
   randomWalkSO: {fileID: 11400000, guid: 39713043046a605468efc8d29a41258a, type: 2}
   corridorLength: 20
   corridorCount: 10
-  is3x3: 0
+  corridorSize: 0
   roomPercent: 0.5
   deadEnds: 0
+  decals: 1
+  decalGenerator: {fileID: 0}
+  obstacles: 1
+  obstacleGenerator: {fileID: 0}
+  onMapGeneratedSpawnPlayer: {fileID: 11400000, guid: 10d0437a8c802aa4d8d7e9208a3185b7, type: 2}
+  showGizmos: 0

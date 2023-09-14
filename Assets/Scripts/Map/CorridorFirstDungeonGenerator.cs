@@ -66,6 +66,11 @@ public class CorridorFirstDungeonGenerator : RandomWalkDungeonGenerator {
 
             freePositions.ExceptWith(obstacleGenerator.GetUsedPositions());
         }
+
+        RemoveUsedPositionsFromRoomsFloors();
+
+        Assert.IsNotNull(roomGenerator, "No RoomGenerator was given to CorridorFirstDungeonGenerator");
+        roomGenerator.GenerateRooms(roomsDictionary);
     }
 
 
@@ -76,6 +81,8 @@ public class CorridorFirstDungeonGenerator : RandomWalkDungeonGenerator {
         freePositions.Clear();
         decalGenerator.ClearPositions();
         obstacleGenerator.ClearPositions();
+        roomGenerator.RunCleanup();
+
         randomColors.Clear();
     }
 
@@ -225,6 +232,12 @@ public class CorridorFirstDungeonGenerator : RandomWalkDungeonGenerator {
 
         return newCorridor;
     }
+
+    private void RemoveUsedPositionsFromRoomsFloors() {
+        foreach (var room in roomsDictionary.Values) {
+            room.ExceptWith(obstacleGenerator.GetUsedPositions());
+        }
+    }
     #endregion
 
     #region Member variables
@@ -256,6 +269,9 @@ public class CorridorFirstDungeonGenerator : RandomWalkDungeonGenerator {
 
     [SerializeField]
     private ObstacleGenerator obstacleGenerator;
+
+    [SerializeField]
+    private RoomGenerator roomGenerator;
 
     [Space(32)]
     [Header("Debug")]

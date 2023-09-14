@@ -3,10 +3,11 @@ using UnityEngine.Assertions;
 
 public class EnemySpawner : Spawner {
     #region Methods
-    public override void Spawn(Vector3 position) {
+    public override GameObject Spawn(Vector3 position) {
         Assert.IsNotNull(spawnee, "Enemy prefab is missing in EnemySpawner");
 
-        Instantiate(spawnee, position, Quaternion.identity);
+        var enemy = Instantiate(spawnee, position, Quaternion.identity);
+        return enemy;
     }
 
     public void SetSpawnee(GameObject enemy) => spawnee = enemy;

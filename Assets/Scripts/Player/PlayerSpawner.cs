@@ -3,12 +3,14 @@ using UnityEngine.Assertions;
 
 public class PlayerSpawner : Spawner {
     #region Methods
-    public override void Spawn(Vector3 position) {
+    public override GameObject Spawn(Vector3 position) {
         Assert.IsNotNull(spawnee, "Player prefab is missing in PlayerSpawner");
         Assert.IsNotNull(onPlayerSpawned, "Spawn event is missing in PlayerSpawner");
 
         var player = Instantiate(spawnee, position, Quaternion.identity);
         onPlayerSpawned.Raise(player);
+
+        return player;
     }
     #endregion
 

@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Assertions;
-using static UnityEngine.GraphicsBuffer;
 
 public class PlayerAttack : MonoBehaviour {
     #region Methods

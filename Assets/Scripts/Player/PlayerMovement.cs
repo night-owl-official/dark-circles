@@ -10,6 +10,10 @@ public class BoolEvent : UnityEvent<bool> { }
 
 public class PlayerMovement : MonoBehaviour {
     #region Methods
+    public void SetSpeed(float value) {
+        speed = value;
+    }
+
     public void ToggleMovement(bool set) {
         canPlayerMove = set;
     }
@@ -154,10 +158,7 @@ public class PlayerMovement : MonoBehaviour {
     #endregion
 
     #region Member variables
-    [SerializeField]
-    private float speed = 0.5f;
-
-    [Header("Collision Detection")]
+   [Header("Collision Detection")]
 
     [SerializeField]
     private float collisionMinDistance = 1f;
@@ -173,5 +174,7 @@ public class PlayerMovement : MonoBehaviour {
     private Vector3 mouseFinalPositionWhenLastMoved;
 
     private bool canPlayerMove = true;
+
+    private float speed;
     #endregion
 }

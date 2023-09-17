@@ -2,19 +2,33 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour {
     #region Methods
+    private void Start() {
+        ResetStats();
+    }
+
+    private void ResetStats() {
+        currentAttackPower = baseAttackPower;
+        currentAttackCooldown = baseAttackCooldown;
+        currentMovementSpeed = baseMovementSpeed;
+
+        onAttackPowerUpdate?.Invoke(currentAttackPower);
+        onAttackCooldownUpdate?.Invoke(currentAttackCooldown);
+        onMovementSpeedUpdate?.Invoke(currentMovementSpeed);
+    }
+
     public void UpdateAttackPower(float value) {
-        attackPower += value;
-        onAttackPowerUpdate?.Invoke(attackPower);
+        currentAttackPower += value;
+        onAttackPowerUpdate?.Invoke(currentAttackPower);
     }
 
     public void UpdateAttackCooldown(float value) {
-        attackCooldown += value;
-        onAttackCooldownUpdate?.Invoke(attackCooldown);
+        currentAttackCooldown += value;
+        onAttackCooldownUpdate?.Invoke(currentAttackCooldown);
     }
 
     public void UpdateMovementSpeed(float value) {
-        movementSpeed += value;
-        onMovementSpeedUpdate?.Invoke(movementSpeed);
+        currentMovementSpeed += value;
+        onMovementSpeedUpdate?.Invoke(currentMovementSpeed);
     }
     #endregion
 
@@ -22,15 +36,15 @@ public class PlayerStats : MonoBehaviour {
     [Header("Attack")]
 
     [SerializeField]
-    private float attackPower = 0.5f;
+    private float baseAttackPower = 0.5f;
     [SerializeField]
-    private float attackCooldown = 1f;
+    private float baseAttackCooldown = 1f;
 
     [Space(16)]
     [Header("Movement")]
 
     [SerializeField]
-    private float movementSpeed = 3f;
+    private float baseMovementSpeed = 3f;
 
     [Space(16)]
     [Header("Events")]
@@ -38,5 +52,9 @@ public class PlayerStats : MonoBehaviour {
     public FloatEvent onAttackPowerUpdate;
     public FloatEvent onAttackCooldownUpdate;
     public FloatEvent onMovementSpeedUpdate;
+
+    private float currentAttackPower;
+    private float currentAttackCooldown;
+    private float currentMovementSpeed;
     #endregion
 }

@@ -3,6 +3,14 @@ using UnityEngine.Assertions;
 
 public class PlayerAttack : MonoBehaviour {
     #region Methods
+    public void SetAttackPower(float value) {
+        power = value;
+    }
+
+    public void SetAttackCooldown(float value) {
+        cooldown = value;
+    }
+
     // Update is called once per frame
     private void Update() {
         RunCDTimerAndSetAtkFlag();
@@ -96,6 +104,7 @@ public class PlayerAttack : MonoBehaviour {
             Instantiate(playerWeapon, transform.position, Quaternion.identity).GetComponent<Projectile>();
         projectile.SetRotation(GetProjectileRotationFacingMouse());
         projectile.SetVelocity(GetProjectileVelocityFacingMouse());
+        projectile.SetHitDamage(power);
     }
 
     private Quaternion GetProjectileRotationFacingMouse() {
@@ -125,9 +134,6 @@ public class PlayerAttack : MonoBehaviour {
     [SerializeField]
     private GameObject playerWeapon = null;
 
-    [SerializeField]
-    private float cooldown = 2f;
-
     public BoolEvent onPlayerAttack;
     public IntEvent onPlayerAttackDirection;
     public BoolEvent onPlayerSideAttack;
@@ -135,5 +141,8 @@ public class PlayerAttack : MonoBehaviour {
 
     private float cdTimer = 0f;
     private bool canAttack = true;
+
+    private float cooldown;
+    private float power;
     #endregion
 }

@@ -19,10 +19,15 @@ public class Powerup : MonoBehaviour {
     protected void Start() {
         hitBox = GetComponent<BoxCollider2D>();
 
-        hitBox.isTrigger = !isPickupBlocked;
+        hitBox.isTrigger = pickupEnabled;
     }
 
-    protected void OnTriggerEnter2D(Collider2D other) {
+    protected void TogglePickup(bool value) {
+        pickupEnabled = value;
+        hitBox.isTrigger = pickupEnabled;
+    }
+
+    protected virtual void OnTriggerEnter2D(Collider2D other) {
         if (!IsPartOfCollisionMask(other)) {
             return;
         }
@@ -32,7 +37,7 @@ public class Powerup : MonoBehaviour {
         Destroy(gameObject);
     }
 
-    private bool IsPartOfCollisionMask(Collider2D collider) {
+    protected bool IsPartOfCollisionMask(Collider2D collider) {
         return ((1 << collider.gameObject.layer) & collisionMask) != 0;
     }
 
@@ -67,11 +72,11 @@ public class Powerup : MonoBehaviour {
     protected LayerMask collisionMask;
 
     [SerializeField]
-    protected bool isPickupBlocked = false;
+    protected bool pickupEnabled = true;
 
     [SerializeField]
     protected FloatGameEventSO onPickup;
 
-    private Collider2D hitBox = null;
+    protected Collider2D hitBox = null;
     #endregion
 }

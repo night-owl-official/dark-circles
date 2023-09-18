@@ -5,8 +5,6 @@ using UnityEngine.Events;
 
 [System.Serializable]
 public class IntEvent : UnityEvent<int> { }
-[System.Serializable]
-public class BoolEvent : UnityEvent<bool> { }
 
 public class PlayerMovement : MonoBehaviour {
     #region Methods

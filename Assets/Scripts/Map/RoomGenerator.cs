@@ -111,12 +111,12 @@ public class RoomGenerator : MonoBehaviour {
             return;
         }
 
-        //treasureRoom = new TreasureRoom(treasureRoomDictionary.ElementAt(0).Key,
-        //    treasureRoomDictionary.ElementAt(0).Value,
-        //    treasureRoomData,
-        //    itemSpawner);
+        treasureRoom = new TreasureRoom(treasureRoomDictionary.ElementAt(0).Key,
+            treasureRoomDictionary.ElementAt(0).Value,
+            null,
+            itemSpawner);
 
-        //treasureRoom.PlaceTreasure();
+        treasureRoom.PlaceTreasure();
     }
 
     private void GenerateEnemyRooms() {
@@ -139,13 +139,11 @@ public class RoomGenerator : MonoBehaviour {
     private PlayerSpawner playerSpawner;
     [SerializeField]
     private EnemySpawner enemySpawner;
-    //[SerializeField]
-    //private ItemSpawner itemSpawner;
+    [SerializeField]
+    private ItemSpawner itemSpawner;
 
     [SerializeField]
     private RoomDataSO bossRoomData;
-    [SerializeField]
-    private RoomDataSO treasureRoomData;
     [SerializeField]
     private RoomDataSO[] enemyRoomsData;
 

@@ -11,9 +11,9 @@ public class TreasureRoom : Room {
     }
 
     public void PlaceTreasure() {
-        //ItemSpawner itemSpawner = (ItemSpawner) spawner;
-        //var treasure = itemSpawner.Spawn((Vector3Int) startPosition);
-        //spawnedEntities.Add(treasure);
+        ItemSpawner itemSpawner = (ItemSpawner) spawner;
+        var treasure = itemSpawner.Spawn((Vector3Int) startPosition);
+        spawnedEntities.Add(treasure);
     }
 
     public override void ClearRoomData() {

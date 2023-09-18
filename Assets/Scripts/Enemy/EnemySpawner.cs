@@ -6,8 +6,7 @@ public class EnemySpawner : Spawner {
     public override GameObject Spawn(Vector3 position) {
         Assert.IsNotNull(spawnee, "Enemy prefab is missing in EnemySpawner");
 
-        var enemy = Instantiate(spawnee, position, Quaternion.identity);
-        return enemy;
+        return Instantiate(spawnee, position, Quaternion.identity);
     }
 
     public void SetSpawnee(GameObject enemy) => spawnee = enemy;

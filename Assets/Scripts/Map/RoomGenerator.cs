@@ -8,10 +8,12 @@ public class RoomGenerator : MonoBehaviour {
         allRoomsDictionary.Clear();
         playerRoomDictionary.Clear();
         bossRoomDictionary.Clear();
+        treasureRoomDictionary.Clear();
         enemyRoomsDictionary.Clear();
 
         playerRoom?.ClearRoomData();
         bossRoom?.ClearRoomData();
+        treasureRoom?.ClearRoomData();
         foreach (var room in enemyRooms) {
             room?.ClearRoomData();
         }
@@ -27,6 +29,7 @@ public class RoomGenerator : MonoBehaviour {
     private void SetRoomsDictionaries() {
         PickPlayerRoom();
         PickBossRoom();
+        PickTreasureRoom();
         PickEnemyRooms();
     }
 
@@ -37,10 +40,28 @@ public class RoomGenerator : MonoBehaviour {
     }
 
     private void PickBossRoom() {
+        var farthestRoomStartPos = FindFarthestRoomFromPlayer();
+
+        bossRoomDictionary.Add(farthestRoomStartPos, allRoomsDictionary[farthestRoomStartPos]);
+        allRoomsDictionary.Remove(farthestRoomStartPos);
+    }
+
+    private void PickTreasureRoom() {
+        if (Random.value >= treasureRoomSpawnProbability) {
+            return;
+        }
+
+        var farthestRoomStartPos = FindFarthestRoomFromPlayer();
+
+        treasureRoomDictionary.Add(farthestRoomStartPos, allRoomsDictionary[farthestRoomStartPos]);
+        allRoomsDictionary.Remove(farthestRoomStartPos);
+    }
+
+    private Vector2Int FindFarthestRoomFromPlayer() {
         float biggestDistance = 0;
         Vector2Int longestDistanceStartPos = Vector2Int.zero;
 
-        foreach (var roomStartPos in  allRoomsDictionary.Keys) {
+        foreach (var roomStartPos in allRoomsDictionary.Keys) {
             float currentDistance =
                 Vector2Int.Distance(playerRoomDictionary.ElementAt(0).Key, roomStartPos);
             if (currentDistance > biggestDistance) {
@@ -49,8 +70,7 @@ public class RoomGenerator : MonoBehaviour {
             }
         }
 
-        bossRoomDictionary.Add(longestDistanceStartPos, allRoomsDictionary[longestDistanceStartPos]);
-        allRoomsDictionary.Remove(longestDistanceStartPos);
+        return longestDistanceStartPos;
     }
 
     private void PickEnemyRooms() {
@@ -64,6 +84,7 @@ public class RoomGenerator : MonoBehaviour {
     private void InstantiateRooms() {
         GeneratePlayerRoom();
         GenerateBossRoom();
+        GenerateTreasureRoom();
         GenerateEnemyRooms();
     }
 
@@ -83,6 +104,19 @@ public class RoomGenerator : MonoBehaviour {
             enemySpawner);
 
         bossRoom.PlaceBoss();
+    }
+
+    private void GenerateTreasureRoom() {
+        if (treasureRoomDictionary.Count == 0) {
+            return;
+        }
+
+        //treasureRoom = new TreasureRoom(treasureRoomDictionary.ElementAt(0).Key,
+        //    treasureRoomDictionary.ElementAt(0).Value,
+        //    treasureRoomData,
+        //    itemSpawner);
+
+        //treasureRoom.PlaceTreasure();
     }
 
     private void GenerateEnemyRooms() {
@@ -105,23 +139,33 @@ public class RoomGenerator : MonoBehaviour {
     private PlayerSpawner playerSpawner;
     [SerializeField]
     private EnemySpawner enemySpawner;
+    //[SerializeField]
+    //private ItemSpawner itemSpawner;
 
     [SerializeField]
     private RoomDataSO bossRoomData;
     [SerializeField]
+    private RoomDataSO treasureRoomData;
+    [SerializeField]
     private RoomDataSO[] enemyRoomsData;
 
+
+    [SerializeField]
+    [Range(0f, 1f)]
+    private float treasureRoomSpawnProbability = 0.2f;
     [SerializeField]
     [Range(0f, 1f)]
     private float enemyRoomSpawnProbability = 0.8f;
 
     private PlayerRoom playerRoom;
     private BossRoom bossRoom;
+    private TreasureRoom treasureRoom;
     private List<EnemyRoom> enemyRooms = new();
 
     private Dictionary<Vector2Int, HashSet<Vector2Int>> allRoomsDictionary = new();
     private Dictionary<Vector2Int, HashSet<Vector2Int>> playerRoomDictionary = new();
     private Dictionary<Vector2Int, HashSet<Vector2Int>> bossRoomDictionary = new();
+    private Dictionary<Vector2Int, HashSet<Vector2Int>> treasureRoomDictionary = new();
     private Dictionary<Vector2Int, HashSet<Vector2Int>> enemyRoomsDictionary = new();
     #endregion
 }

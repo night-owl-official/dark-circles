@@ -46,9 +46,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpawner: {fileID: 0}
   enemySpawner: {fileID: 0}
+  itemSpawner: {fileID: 0}
   bossRoomData: {fileID: 11400000, guid: 8d788a6c072ebb14f9df82a0d73a2bf2, type: 2}
   enemyRoomsData:
   - {fileID: 11400000, guid: 5f512d4293a671e4e855078f258f26dc, type: 2}
   - {fileID: 11400000, guid: 07f8db51e73a82047b84bd5453802252, type: 2}
   - {fileID: 11400000, guid: a0e34c6798076ba4bb31db0c81fdc28e, type: 2}
+  possibleTreasures:
+  - chance: 0.1
+    treasure: {fileID: 4375797587422599211, guid: d8959061f4cb21546ac010d577b80718, type: 3}
+    weight: 0
+  - chance: 0.3
+    treasure: {fileID: 3380238604860030055, guid: 8b3bc7cc2501cb84591381bc2917f061, type: 3}
+    weight: 0
+  - chance: 0.6
+    treasure: {fileID: 2686354617445721330, guid: 841cd0b581925fc49b692c65a0e9d28d, type: 3}
+    weight: 0
+  treasureRoomSpawnProbability: 0.2
   enemyRoomSpawnProbability: 0.8

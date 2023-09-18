@@ -46,3 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursors:
   - {fileID: 11400000, guid: 77ed614af3a80f54d8300cce1228cff7, type: 2}
+  light2D: {fileID: 0}

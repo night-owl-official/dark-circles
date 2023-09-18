@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Rendering.Universal;
 
 public class CursorManager : MonoBehaviour {
     public enum CursorType {
@@ -23,6 +24,16 @@ public class CursorManager : MonoBehaviour {
     // Update is called once per frame
     private void Update() {
         RenderMouseCursor();
+    }
+
+    private void LateUpdate() {
+        if (!light2D)
+            return;
+
+        var mousePosWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePosWorld.z = 0f;
+
+        light2D.transform.position = mousePosWorld;
     }
 
     private void RenderMouseCursor() {
@@ -61,6 +72,9 @@ public class CursorManager : MonoBehaviour {
     #region Member variables
     [SerializeField]
     private CursorSO[] cursors;
+
+    [SerializeField]
+    private Light2D light2D;
 
     private int currentFrameIndex = 0;
     private float timer = 0f;

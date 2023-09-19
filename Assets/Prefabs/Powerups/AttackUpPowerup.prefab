@@ -454,17 +454,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerupLevels:
-  - chance: 10
+  - value: 1.5
+    chance: 10
     weight: 0
-    level: 1.5
-  - chance: 20
+  - value: 1
+    chance: 20
     weight: 0
-    level: 1
-  - chance: 70
+  - value: 0.5
+    chance: 70
     weight: 0
-    level: 0.5
   collisionMask:
     serializedVersion: 2
     m_Bits: 8
-  isPickupBlocked: 0
+  pickupEnabled: 1
   onPickup: {fileID: 11400000, guid: cd24857992c5dc04b8c022bede49d777, type: 2}

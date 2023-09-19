@@ -114,7 +114,7 @@ public class RoomGenerator : MonoBehaviour {
         treasureRoom = new TreasureRoom(treasureRoomDictionary.ElementAt(0).Key,
             treasureRoomDictionary.ElementAt(0).Value,
             null,
-            possibleTreasures,
+            treasures,
             itemSpawner);
 
         treasureRoom.PlaceTreasure();
@@ -149,7 +149,7 @@ public class RoomGenerator : MonoBehaviour {
     private RoomDataSO[] enemyRoomsData;
 
     [SerializeField]
-    private Treasure[] possibleTreasures;
+    private WeightedGameObject[] treasures;
 
     [SerializeField]
     [Range(0f, 1f)]

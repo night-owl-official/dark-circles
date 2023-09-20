@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1892328137042881300}
   - component: {fileID: 1892328137042881303}
   - component: {fileID: -142920427928598707}
+  - component: {fileID: 7093982341081116834}
   - component: {fileID: -9105176260203322450}
   - component: {fileID: -6094245646912867103}
   - component: {fileID: 2290448135426274130}
@@ -172,7 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b69f845badbbfe469ba596cac9aae6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.8
+  speed: 2.5
 --- !u!114 &-142920427928598707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,6 +188,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 3
   onEnemyDeath: {fileID: 11400000, guid: b1badc6547346a344b1e4232e0c25878, type: 2}
+--- !u!114 &7093982341081116834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892328137042881298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 745fe6e944b373b49abaff9588f898ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0.5
+  hitMask:
+    serializedVersion: 2
+    m_Bits: 8
+  onBodyContact: {fileID: 11400000, guid: c13d6f4be4d839841aa86aaa59ff77a3, type: 2}
 --- !u!114 &-9105176260203322450
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -207,7 +207,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 5
-  onHit: {fileID: 11400000, guid: ff08b6feca44bc940b84e2519526a0cc, type: 2}
+  onHitDamage: {fileID: 11400000, guid: ff08b6feca44bc940b84e2519526a0cc, type: 2}
+  onHitGameObject: {fileID: 0}
   hitMask:
     serializedVersion: 2
     m_Bits: 8

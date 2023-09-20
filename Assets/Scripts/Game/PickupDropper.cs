@@ -8,6 +8,10 @@ public class PickupDropper : MonoBehaviour {
     }
 
     public void DropPickup(GameObject dropper) {
+        if (gameObject != dropper) {
+            return;
+        }
+
         if (Random.value * 100f >= dropChance) {
             return;
         }

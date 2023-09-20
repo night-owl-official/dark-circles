@@ -8,10 +8,14 @@ public class Projectile : MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        Assert.IsNotNull(onHit, "hit game event missing from Projectile");
+        Assert.IsNotNull(onHitDamage, "hit game event missing from Projectile");
 
         if (IsPartOfHitMask(other)) {
-            onHit.Raise(hitDamage);
+            if (onHitGameObject) {
+                onHitGameObject.Raise(other.gameObject);
+            }
+
+            onHitDamage.Raise(hitDamage);
         }
 
         Destroy(gameObject);
@@ -40,7 +44,9 @@ public class Projectile : MonoBehaviour {
     private float force = 5f;
 
     [SerializeField]
-    private FloatGameEventSO onHit;
+    private FloatGameEventSO onHitDamage;
+    [SerializeField]
+    private GameobjectGameEventSO onHitGameObject;
 
     [SerializeField]
     private LayerMask hitMask;

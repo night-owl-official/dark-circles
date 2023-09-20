@@ -369,7 +369,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 10
-  onHit: {fileID: 11400000, guid: 9b280cfce24b9404d9d62894b04f4f31, type: 2}
+  onHitDamage: {fileID: 11400000, guid: 9b280cfce24b9404d9d62894b04f4f31, type: 2}
+  onHitGameObject: {fileID: 11400000, guid: 9dba1214af89d9d47bb994e5c4d24344, type: 2}
   hitMask:
     serializedVersion: 2
     m_Bits: 128

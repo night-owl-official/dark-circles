@@ -155,6 +155,7 @@ MonoBehaviour:
   pickupEnabled: 0
   onPickup: {fileID: 11400000, guid: cb0a09efe9a90474d8e69fc1719edfb5, type: 2}
   recoverAmount: 1
+  onSpawn: {fileID: 11400000, guid: f8dcf8947ab1ba0468b90739cab44f80, type: 2}
 --- !u!114 &8853322125266911625
 MonoBehaviour:
   m_ObjectHideFlags: 0

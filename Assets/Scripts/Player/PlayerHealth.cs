@@ -29,6 +29,14 @@ public class PlayerHealth : Health {
             onToggleHeartPickup.Raise(false);
         }
     }
+
+    public void ToggleSpawnedHeartPickup() {
+        if (currentHealth < maxHealth) {
+            onToggleHeartPickup.Raise(true);
+        } else {
+            onToggleHeartPickup.Raise(false);
+        }
+    }
     #endregion
 
     #region Member variables

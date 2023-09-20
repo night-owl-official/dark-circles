@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 856450835086109493}
   - component: {fileID: -2526746454910693389}
   - component: {fileID: 7082569402601660417}
+  - component: {fileID: 4360500044296698690}
   m_Layer: 3
   m_Name: Dante
   m_TagString: Player
@@ -653,6 +654,34 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: PlayerHealth, Assembly-CSharp
         m_MethodName: HealUp
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4360500044296698690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5856814101129960045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8ec678a24c6cd945be599e0f13f1e45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameEvent: {fileID: 11400000, guid: f8dcf8947ab1ba0468b90739cab44f80, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -3803809146717471334}
+        m_TargetAssemblyTypeName: PlayerHealth, Assembly-CSharp
+        m_MethodName: ToggleSpawnedHeartPickup
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

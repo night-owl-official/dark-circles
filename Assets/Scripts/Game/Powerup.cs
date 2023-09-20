@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Powerup : MonoBehaviour {
     #region Methods
-    protected void Start() {
+    protected virtual void Start() {
         hitBox = GetComponent<BoxCollider2D>();
 
         hitBox.isTrigger = pickupEnabled;

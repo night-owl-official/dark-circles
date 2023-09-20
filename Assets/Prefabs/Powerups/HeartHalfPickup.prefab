@@ -442,6 +442,7 @@ MonoBehaviour:
   pickupEnabled: 0
   onPickup: {fileID: 11400000, guid: cb0a09efe9a90474d8e69fc1719edfb5, type: 2}
   recoverAmount: 0.5
+  onSpawn: {fileID: 11400000, guid: f8dcf8947ab1ba0468b90739cab44f80, type: 2}
 --- !u!114 &3424998660031803409
 MonoBehaviour:
   m_ObjectHideFlags: 0

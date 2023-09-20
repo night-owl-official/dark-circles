@@ -16,7 +16,9 @@ GameObject:
   - component: {fileID: 1892328137042881303}
   - component: {fileID: 1892328137042881301}
   - component: {fileID: -142920427928598707}
+  - component: {fileID: -9105176260203322450}
   - component: {fileID: -6094245646912867103}
+  - component: {fileID: 7557802912396447263}
   m_Layer: 7
   m_Name: Damned_Enemy_Standing
   m_TagString: Untagged
@@ -203,6 +205,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 3
   onEnemyDeath: {fileID: 11400000, guid: b1badc6547346a344b1e4232e0c25878, type: 2}
+--- !u!114 &-9105176260203322450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892328137042881298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ada7028d6204454abc111fbc53d1bbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropChance: 30
+  drops:
+  - prefab: {fileID: 3380238604860030055, guid: 8b3bc7cc2501cb84591381bc2917f061, type: 3}
+    chance: 5
+    weight: 0
+  - prefab: {fileID: 8793244931977795901, guid: 0db89c1bdb60023408843a278bcbed58, type: 3}
+    chance: 60
+    weight: 0
+  - prefab: {fileID: 4048686652516498471, guid: 87c54cac4d9426b47b4c741f724434b5, type: 3}
+    chance: 35
+    weight: 0
 --- !u!114 &-6094245646912867103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,6 +247,34 @@ MonoBehaviour:
       - m_Target: {fileID: -142920427928598707}
         m_TargetAssemblyTypeName: EnemyHealth, Assembly-CSharp
         m_MethodName: TakeDamage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7557802912396447263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892328137042881298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 980271407a7f9fd448579005665cdaa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameEvent: {fileID: 11400000, guid: b1badc6547346a344b1e4232e0c25878, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -9105176260203322450}
+        m_TargetAssemblyTypeName: PickupDropper, Assembly-CSharp
+        m_MethodName: DropPickup
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -11,6 +11,8 @@ public class EnemyHealth : Health {
         if (currentHealth <= 0) {
             onEnemyDeath.Raise(gameObject);
         }
+
+        Debug.Log(name + ": " + currentHealth);
     }
     #endregion
 

@@ -191,7 +191,7 @@ MonoBehaviour:
   minProjectiles: 2
   maxProjectiles: 5
   shootingRadius: 0.2
-  attackRange: 12
+  attackRange: 8
   minCooldown: 2.5
   maxCooldown: 5.5
   shouldUseRadiusAttack: 1

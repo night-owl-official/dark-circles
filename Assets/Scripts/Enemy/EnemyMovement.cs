@@ -1,3 +1,4 @@
+using UnityEditor.TextCore.Text;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -11,7 +12,15 @@ public class EnemyMovement : MonoBehaviour {
 
     // Update is called once per frame
     private void Update() {
-        ChaseTarget();
+        if (chaseTriggered) {
+            ChaseTarget();
+        } else {
+            TriggerChaseWhenTargetInRadius();
+        }
+    }
+
+    private void TriggerChaseWhenTargetInRadius() {
+        chaseTriggered = Vector2.Distance(transform.position, target.position) < chaseRadius;
     }
 
     private void ChaseTarget() {
@@ -38,7 +47,11 @@ public class EnemyMovement : MonoBehaviour {
     [SerializeField]
     private float speed = 1.0f;
 
+    [SerializeField]
+    private float chaseRadius = 5f;
+
     private SpriteRenderer spriteRenderer;
     private Transform target;
+    private bool chaseTriggered = false;
     #endregion
 }

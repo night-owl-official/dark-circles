@@ -14,14 +14,13 @@ GameObject:
   - component: {fileID: 1892328137042881299}
   - component: {fileID: 1892328137042881300}
   - component: {fileID: 1892328137042881303}
-  - component: {fileID: 1892328137042881301}
   - component: {fileID: -142920427928598707}
   - component: {fileID: -9105176260203322450}
   - component: {fileID: -6094245646912867103}
   - component: {fileID: 2290448135426274130}
   - component: {fileID: 7557802912396447263}
   m_Layer: 7
-  m_Name: Damned_Enemy_Standing
+  m_Name: Damned_Enemy_Crawling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,7 +82,7 @@ SpriteRenderer:
   m_SortingLayerID: -133668031
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 710425441, guid: 6f5db8b89ad50ac4fa1d9019648bbcc4, type: 3}
+  m_Sprite: {fileID: -1936993917, guid: 6f5db8b89ad50ac4fa1d9019648bbcc4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -107,10 +106,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.020921908, y: 0.11163229}
+  m_Offset: {x: 0.00040060282, y: 0.056908697}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.50000006, y: 0.07}
+    pivot: {x: 0.5, y: 0.34}
     oldSize: {x: 1, y: 1}
     newSize: {x: 0.08, y: 0.08}
     adaptiveTilingThreshold: 0.5
@@ -118,7 +117,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.31386918, y: 0.35759264}
+  m_Size: {x: 0.6194092, y: 0.46703982}
   m_EdgeRadius: 0
 --- !u!50 &1892328137042881299
 Rigidbody2D:
@@ -151,7 +150,7 @@ Animator:
   m_GameObject: {fileID: 1892328137042881298}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b50477bf6fa19e54bb016ef46f3a3fde, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1165f75e3368fee41851e92c2389837b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -173,25 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b69f845badbbfe469ba596cac9aae6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.8
---- !u!114 &1892328137042881301
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1892328137042881298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f808f550244f50f4d9fe89d2746ddb3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weapon: {fileID: 6894919365257305016, guid: 79dff5df4ac43ab4cb33073d5743c8de, type: 3}
-  minProjectiles: 2
-  maxProjectiles: 5
-  shootingRadius: 0.2
-  attackRange: 8
-  cooldown: 2
+  speed: 1.8
 --- !u!114 &-142920427928598707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,7 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abdfe4d7e5174034fa80cb4efd4b90e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 2
+  maxHealth: 3
   onEnemyDeath: {fileID: 11400000, guid: b1badc6547346a344b1e4232e0c25878, type: 2}
 --- !u!114 &-9105176260203322450
 MonoBehaviour:
@@ -220,7 +201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropChance: 20
   drops:
-  - prefab: {fileID: 3380238604860030055, guid: 8b3bc7cc2501cb84591381bc2917f061, type: 3}
+  - prefab: {fileID: 4375797587422599211, guid: d8959061f4cb21546ac010d577b80718, type: 3}
     chance: 5
     weight: 0
   - prefab: {fileID: 8793244931977795901, guid: 0db89c1bdb60023408843a278bcbed58, type: 3}

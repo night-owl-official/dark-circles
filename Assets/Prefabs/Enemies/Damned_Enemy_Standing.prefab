@@ -191,7 +191,10 @@ MonoBehaviour:
   maxProjectiles: 5
   shootingRadius: 0.2
   attackRange: 8
-  cooldown: 2
+  minCooldown: 2
+  maxCooldown: 4
+  shouldUseRadiusAttack: 0
+  canUseAnyAttack: 0
 --- !u!114 &-142920427928598707
 MonoBehaviour:
   m_ObjectHideFlags: 0

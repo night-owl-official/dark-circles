@@ -13,7 +13,7 @@ public class EnemyAttack : MonoBehaviour {
         RunCDTimerAndSetAtkFlag();
 
         if (IsTargetInRange() && canAttack) {
-            PerformBasicAttack();
+            InitiateAttack();
             canAttack = false;
         }
     }
@@ -22,7 +22,9 @@ public class EnemyAttack : MonoBehaviour {
         if (!canAttack) {
             cdTimer += Time.deltaTime;
 
-            if (cdTimer >= cooldown) {
+            float randomCooldown = Random.Range(minCooldown, maxCooldown);
+
+            if (cdTimer >= randomCooldown) {
                 canAttack = true;
                 cdTimer = 0f;
             }
@@ -33,6 +35,20 @@ public class EnemyAttack : MonoBehaviour {
         Assert.IsNotNull(target, "EnemyAttack does not have a target");
 
         return Vector2.Distance(transform.position, target.position) <= attackRange;
+    }
+
+    private void InitiateAttack() {
+        if (canUseAnyAttack) {
+            if (Random.value < 0.5f) {
+                PerformBasicAttack();
+            } else {
+                PerformRadiusAttack();
+            }
+        } else if (shouldUseRadiusAttack) {
+            PerformRadiusAttack();
+        } else {
+            PerformBasicAttack();
+        }
     }
 
     private void PerformBasicAttack() {
@@ -80,7 +96,14 @@ public class EnemyAttack : MonoBehaviour {
     private float attackRange = 2f;
 
     [SerializeField]
-    private float cooldown = 2f;
+    private float minCooldown = .5f;
+    [SerializeField]
+    private float maxCooldown = 3f;
+
+    [SerializeField]
+    private bool shouldUseRadiusAttack = false;
+    [SerializeField]
+    private bool canUseAnyAttack = false;
 
     private Transform target;
     private float cdTimer = 0f;

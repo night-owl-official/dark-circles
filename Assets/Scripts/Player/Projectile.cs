@@ -15,6 +15,10 @@ public class Projectile : MonoBehaviour {
                 onHitGameObject.Raise(other.gameObject);
             }
 
+            if (onHitChaseTrigger) {
+                onHitChaseTrigger.Raise(true);
+            }
+
             onHitDamage.Raise(hitDamage);
         }
 
@@ -47,6 +51,8 @@ public class Projectile : MonoBehaviour {
     private FloatGameEventSO onHitDamage;
     [SerializeField]
     private GameobjectGameEventSO onHitGameObject;
+    [SerializeField]
+    private BoolGameEventSO onHitChaseTrigger;
 
     [SerializeField]
     private LayerMask hitMask;

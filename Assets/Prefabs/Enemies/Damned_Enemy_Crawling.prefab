@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: -6094245646912867103}
   - component: {fileID: 2290448135426274130}
   - component: {fileID: 7557802912396447263}
+  - component: {fileID: 3030089076620690100}
   m_Layer: 7
   m_Name: Damned_Enemy_Crawling
   m_TagString: Untagged
@@ -174,6 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2.5
+  chaseRadius: 5
 --- !u!114 &-142920427928598707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,6 +286,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1892328137042881303}
+        m_TargetAssemblyTypeName: EnemyMovement, Assembly-CSharp
+        m_MethodName: SetEnemyTriggered
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7557802912396447263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,6 +317,34 @@ MonoBehaviour:
       - m_Target: {fileID: -9105176260203322450}
         m_TargetAssemblyTypeName: PickupDropper, Assembly-CSharp
         m_MethodName: DropPickup
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3030089076620690100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892328137042881298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ac60834b4c04546b1f9da80e2bda3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameEvent: {fileID: 11400000, guid: 2b41d2b9043fe9449b14dfe2f9fbfec0, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1892328137042881303}
+        m_TargetAssemblyTypeName: EnemyMovement, Assembly-CSharp
+        m_MethodName: SetChaseTrigger
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

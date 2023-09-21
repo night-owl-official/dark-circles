@@ -1,9 +1,18 @@
-using UnityEditor.TextCore.Text;
 using UnityEngine;
 using UnityEngine.Assertions;
 
 public class EnemyMovement : MonoBehaviour {
     #region Methods
+    public void SetChaseTrigger(bool flag) {
+        if (gameObject != enemyTriggered) {
+            return;
+        }
+
+        chaseTriggered = flag;
+    }
+
+    public void SetEnemyTriggered(GameObject enemy) => enemyTriggered = enemy;
+
     // Start is called before the first frame update
     private void Start() {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -53,5 +62,6 @@ public class EnemyMovement : MonoBehaviour {
     private SpriteRenderer spriteRenderer;
     private Transform target;
     private bool chaseTriggered = false;
+    private GameObject enemyTriggered = null;
     #endregion
 }

@@ -34,6 +34,8 @@ public class PlayerAttack : MonoBehaviour {
         // Stop movement if the player was moving
         onInitiateAttack?.Invoke(false);
 
+        mouseWorldPositionOnAttack = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
         Vector3 mouseViewportPosition = Camera.main.ScreenToViewportPoint(Input.mousePosition);
         int animationAttackDir = GetAnimationAttackDirection(mouseViewportPosition);
         // Attack animation set
@@ -108,17 +110,13 @@ public class PlayerAttack : MonoBehaviour {
     }
 
     private Quaternion GetProjectileRotationFacingMouse() {
-        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        Vector3 rotation = transform.position - mouseWorldPos;
+        Vector3 rotation = transform.position - mouseWorldPositionOnAttack;
         float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
         return Quaternion.Euler(0, 0, rot + 90f);
     }
 
     private Vector2 GetProjectileVelocityFacingMouse() {
-        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        Vector3 direction = mouseWorldPos - transform.position;
+        Vector3 direction = mouseWorldPositionOnAttack - transform.position;
         return new Vector2(direction.x, direction.y).normalized;
     }
     #endregion
@@ -141,6 +139,7 @@ public class PlayerAttack : MonoBehaviour {
 
     private float cdTimer = 0f;
     private bool canAttack = true;
+    private Vector3 mouseWorldPositionOnAttack = Vector3.zero;
 
     private float cooldown;
     private float power;

@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 541641043700513400}
   - component: {fileID: 1294385371838668953}
+  - component: {fileID: 6547510205246453196}
+  - component: {fileID: 7253443713002567411}
   m_Layer: 0
   m_Name: RoomGenerator
   m_TagString: Untagged
@@ -64,3 +66,59 @@ MonoBehaviour:
     weight: 0
   treasureRoomSpawnProbability: 0.2
   enemyRoomSpawnProbability: 0.8
+--- !u!114 &6547510205246453196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3160960307386885280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 980271407a7f9fd448579005665cdaa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameEvent: {fileID: 11400000, guid: b1badc6547346a344b1e4232e0c25878, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1294385371838668953}
+        m_TargetAssemblyTypeName: RoomGenerator, Assembly-CSharp
+        m_MethodName: DespawnEnemy
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7253443713002567411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3160960307386885280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 980271407a7f9fd448579005665cdaa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameEvent: {fileID: 11400000, guid: 7c14efcf14649e04985d1018a486a13d, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1294385371838668953}
+        m_TargetAssemblyTypeName: RoomGenerator, Assembly-CSharp
+        m_MethodName: DespawnBoss
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

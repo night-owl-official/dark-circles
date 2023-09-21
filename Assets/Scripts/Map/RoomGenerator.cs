@@ -19,6 +19,16 @@ public class RoomGenerator : MonoBehaviour {
         }
     }
 
+    public void DespawnBoss(GameObject boss) {
+        bossRoom.RemoveEntity(boss);
+    }
+
+    public void DespawnEnemy(GameObject enemy) {
+        foreach (var room in enemyRooms) {
+            room.RemoveEntity(enemy);
+        }
+    }
+
     public void GenerateRooms(Dictionary<Vector2Int, HashSet<Vector2Int>> rooms) {
         allRoomsDictionary = new(rooms);
         SetRoomsDictionaries();

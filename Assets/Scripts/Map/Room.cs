@@ -22,10 +22,21 @@ public abstract class Room {
         positions.Clear();
 
         foreach (var entity in spawnedEntities) {
-            DestroyInAnyMode(entity);
+            if (entity != null) {
+                DestroyInAnyMode(entity);
+            }
         }
 
         spawnedEntities.Clear();
+    }
+
+    public virtual void RemoveEntity(GameObject entity) {
+        if (!spawnedEntities.Contains(entity)) {
+            return;
+        }
+
+        spawnedEntities.Remove(entity);
+        DestroyInAnyMode(entity);
     }
 
     #if UNITY_EDITOR

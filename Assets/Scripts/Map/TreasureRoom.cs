@@ -20,6 +20,14 @@ public class TreasureRoom : Room {
         spawnedEntities.Add(treasure);
     }
 
+    public override void RemoveEntity(GameObject entity) {
+        if (!spawnedEntities.Contains(entity)) {
+            return;
+        }
+
+        spawnedEntities.Remove(entity);
+    }
+
     public override void ClearRoomData() {
         base.ClearRoomData();
         startPosition = Vector2Int.zero;

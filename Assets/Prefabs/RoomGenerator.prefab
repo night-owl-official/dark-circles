@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 980271407a7f9fd448579005665cdaa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameEvent: {fileID: 11400000, guid: 7c14efcf14649e04985d1018a486a13d, type: 2}
+  GameEvent: {fileID: 11400000, guid: 6512b193ffbf1664b8e029dd1f8335fe, type: 2}
   Response:
     m_PersistentCalls:
       m_Calls:

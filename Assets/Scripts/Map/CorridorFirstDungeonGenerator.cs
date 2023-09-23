@@ -12,6 +12,10 @@ public class CorridorFirstDungeonGenerator : RandomWalkDungeonGenerator {
     }
 
     #region Methods
+    private void Awake() {
+        RunCorridorFirstDungeonGeneration();
+    }
+
     private void OnDrawGizmos() {
         if (!showGizmos)
             return;

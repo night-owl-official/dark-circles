@@ -133,7 +133,7 @@ public class RoomGenerator : MonoBehaviour {
     private void GenerateEnemyRooms() {
         foreach (var room in enemyRoomsDictionary) {
             var enemyRoom = new EnemyRoom(room.Value,
-                enemyRoomsData[0],
+                enemyRoomsData[Random.Range(0, enemyRoomsData.Length)],
                 enemySpawner);
 
             if (!enemyRooms.Contains(enemyRoom)) {

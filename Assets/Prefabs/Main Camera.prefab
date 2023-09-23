@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5541833367234475968}
   - component: {fileID: 5541833367234475839}
   - component: {fileID: 5541833367234475836}
-  - component: {fileID: 8011484330755793502}
+  - component: {fileID: 8692224976012449860}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followSpeed: 1
---- !u!114 &8011484330755793502
+--- !u!114 &8692224976012449860
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

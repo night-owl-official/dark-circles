@@ -3,6 +3,10 @@ using UnityEngine;
 public class TargetFollow : MonoBehaviour {
     #region Methods
     public void SetTarget(GameObject targetToFollow) {
+        var cameraPosition = targetToFollow.transform.position;
+        cameraPosition.z = -10f;
+        transform.position = cameraPosition;
+
         target = targetToFollow.transform;
     }
 
@@ -12,8 +16,9 @@ public class TargetFollow : MonoBehaviour {
     }
 
     private void FollowTargetSmoothly() {
-        if (!target)
-            return;
+        if (!target) {
+            SetTarget(FindObjectOfType<PlayerMovement>().gameObject);
+        }
 
         Vector3 cameraPosition =
             Vector3.Lerp(transform.position, target.position, followSpeed * Time.deltaTime);

@@ -293,7 +293,7 @@ MonoBehaviour:
   collisionMinDistance: 0.7
   collisionMask:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 2240
   onPlayerMoveDirection:
     m_PersistentCalls:
       m_Calls:

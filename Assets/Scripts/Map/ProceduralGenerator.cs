@@ -63,4 +63,8 @@ public static class Direction2D {
     public static Vector2Int GetRandomCardinalDirection() {
         return cardinalDirections[Random.Range(0, cardinalDirections.Count)];
     }
+
+    public static Vector2Int GetRandomFullDirection() {
+        return fullDirections[Random.Range(0, fullDirections.Count)];
+    }
 }

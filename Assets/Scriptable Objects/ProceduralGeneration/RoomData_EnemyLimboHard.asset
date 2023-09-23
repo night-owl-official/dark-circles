@@ -15,5 +15,6 @@ MonoBehaviour:
   minEntities: 4
   maxEntities: 6
   possibleEntities:
-  - {fileID: 1892328137042881298, guid: 8748505b4f1e754499a986f78844e141, type: 3}
+  - {fileID: 1892328137042881298, guid: c714e3a70b0ce8a499d215b06dc40880, type: 3}
+  - {fileID: 1892328137042881298, guid: de1040f36fc3c9f489743f996aa838c3, type: 3}
   isEmpty: 0

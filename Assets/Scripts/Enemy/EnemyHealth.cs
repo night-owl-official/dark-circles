@@ -12,6 +12,10 @@ public class EnemyHealth : Health {
 
         base.TakeDamage(damage);
 
+        if (onEnemyHealthDecreased) {
+            onEnemyHealthDecreased.Raise(damage);
+        }
+
         if (currentHealth <= 0) {
             onEnemyDeath.Raise(gameObject);
         }
@@ -25,6 +29,8 @@ public class EnemyHealth : Health {
     #region Member variables
     [SerializeField]
     private GameobjectGameEventSO onEnemyDeath;
+    [SerializeField]
+    private FloatGameEventSO onEnemyHealthDecreased;
 
     private GameObject enemyHit = null;
     #endregion

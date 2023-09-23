@@ -374,7 +374,7 @@ MonoBehaviour:
   onHitChaseTrigger: {fileID: 11400000, guid: 2b41d2b9043fe9449b14dfe2f9fbfec0, type: 2}
   hitMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 2176
 --- !u!1 &8072768568589929096
 GameObject:
   m_ObjectHideFlags: 0
